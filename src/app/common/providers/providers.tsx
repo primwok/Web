@@ -6,6 +6,12 @@ import { ToasterProvider } from "./toast-notification.provider";
 import { QueryClient } from "@tanstack/react-query";
 import React from "react";
 import { API_URL } from "@/lib/secrets";
+import { AuthProvider } from "../contexts/auth.context";
+import { RegionProvider } from "../contexts/region.context";
+import { RegionStorage } from "../contexts/stores/region-store";
+import { CartStorage } from "../contexts/stores/cart-store";
+import { AuthStorage } from "../contexts/stores/auth-store";
+import { CartProvider } from "../contexts/cart.context";
 
 const queryClient = new QueryClient();
 
@@ -15,8 +21,11 @@ export const Providers: React.FC<React.PropsWithChildren> = ({ children }) => {
       queryClientProviderProps={{ client: queryClient }}
       baseUrl={API_URL ?? ""}
     >
-      {children}
-      {/* <ToasterProvider /> */}
+      <AuthProvider store={AuthStorage}>
+        <RegionProvider store={RegionStorage}>
+          <CartProvider store={CartStorage}>{children}</CartProvider>
+        </RegionProvider>
+      </AuthProvider>
     </MedusaProvider>
   );
 };

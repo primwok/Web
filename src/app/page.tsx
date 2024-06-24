@@ -1,10 +1,16 @@
 import Image from "next/image";
 import { AuthPopup } from "@/app/feat/auth/auth-popup";
+import { Regions } from "./feat/home/regions";
+import { Header } from "./feat/menu-bars/header";
+import Products from "./feat/products/list";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <AuthPopup />
-    </main>
+    <div className="flex min-h-screen w-full flex-col">
+      <main className="flex flex-1 flex-col gap-4">
+        <Header />
+        <Products />
+      </main>
+    </div>
   );
 }

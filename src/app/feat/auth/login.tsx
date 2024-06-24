@@ -19,6 +19,7 @@ const loginSchema = zod.object({
 });
 
 type LoginInput = zod.infer<typeof loginSchema>;
+//TODO find out how to store a token in the local storage
 
 const LoginCustomerForm = () => {
   const { client } = useMedusa();
@@ -29,42 +30,42 @@ const LoginCustomerForm = () => {
   });
 
   const handleLogin = async ({ email, password }: LoginInput) => {
-    const response = await client.auth.authenticate({
+    console.log("email", email);
+    console.log("password,", password);
+    const response = await client.auth.getToken({
       email,
       password,
     });
 
-    if (response.customer) {
+    if (response.access_token) {
       refetchCustomer();
     }
   };
 
   return (
     <FormProvider {...form}>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(handleLogin)} className="space-y-8">
-          <Card>
-            <CardHeader>
-              <CardTitle>Login</CardTitle>
-              <CardDescription>Login to your account</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <div className="space-y-1">
-                <CInput name="email" label="Email" type="email" required />
-              </div>
+      <form onSubmit={form.handleSubmit(handleLogin)} className="space-y-8">
+        <Card>
+          <CardHeader>
+            <CardTitle>Login</CardTitle>
+            <CardDescription>Login to your account</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            <div className="space-y-1">
+              <CInput name="email" label="Email" type="email" required />
+            </div>
 
-              <div className="space-y-1">
-                <CPasswordInput name="password" label="Password" required />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button type="submit">
-                {form.formState.isSubmitting ? "Loading..." : "Login"}
-              </Button>
-            </CardFooter>
-          </Card>
-        </form>
-      </Form>
+            <div className="space-y-1">
+              <CPasswordInput name="password" label="Password" required />
+            </div>
+          </CardContent>
+          <CardFooter>
+            <Button type="submit">
+              {form.formState.isSubmitting ? "Loading..." : "Login"}
+            </Button>
+          </CardFooter>
+        </Card>
+      </form>
     </FormProvider>
   );
 };

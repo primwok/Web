@@ -42,7 +42,9 @@ const RegisterCustomerForm = () => {
   const { toast } = useToast();
 
   const onSubmit = (customerData: RegisterCustomerInput) => {
-    createCustomer.mutate(customerData, {
+    // console.log("customerData", customerData);
+    const { password_confirmation, ...rest } = customerData;
+    createCustomer.mutate(rest, {
       onSuccess: ({ customer }) => {
         console.log(customer.id);
         toast({
@@ -63,57 +65,52 @@ const RegisterCustomerForm = () => {
 
   return (
     <FormProvider {...form}>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <Card>
-            <CardHeader>
-              <CardTitle>Register</CardTitle>
-              <CardDescription>
-                Log in to your account to access your profile.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <div className="space-y-1">
-                <CInput name="email" label="Email" type="email" required />
-              </div>
-              <div className="space-y-1">
-                <CInput
-                  name="first_name"
-                  label="First Name"
-                  type="text"
-                  required
-                />
-              </div>
-              <div className="space-y-1">
-                <CInput
-                  name="last_name"
-                  label="Last Name"
-                  type="text"
-                  required
-                />
-              </div>
-              <div className="space-y-1">
-                <CInput name="phone" label="Phone" type="text" required />
-              </div>
-              <div className="space-y-1">
-                <CPasswordInput name="password" label="Password" required />
-              </div>
-              <div className="space-y-1">
-                <CPasswordInput
-                  name="password_confirmation"
-                  label="Confirm Password"
-                  required
-                />
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button type="submit" disabled={form.formState.isSubmitting}>
-                {form.formState.isSubmitting ? "Loading..." : "Register"}
-              </Button>
-            </CardFooter>
-          </Card>
-        </form>
-      </Form>
+      {/* <Form {...form} onSubmit={form.handleSubmit(onSubmit)}> */}
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <Card>
+          <CardHeader>
+            <CardTitle>Register</CardTitle>
+            <CardDescription>
+              Log in to your account to access your profile.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            <div className="space-y-1">
+              <CInput name="email" label="Email" type="email" required />
+            </div>
+            <div className="space-y-1">
+              <CInput
+                name="first_name"
+                label="First Name"
+                type="text"
+                required
+              />
+            </div>
+            <div className="space-y-1">
+              <CInput name="last_name" label="Last Name" type="text" required />
+            </div>
+            <div className="space-y-1">
+              <CInput name="phone" label="Phone" type="text" required />
+            </div>
+            <div className="space-y-1">
+              <CPasswordInput name="password" label="Password" required />
+            </div>
+            <div className="space-y-1">
+              <CPasswordInput
+                name="password_confirmation"
+                label="Confirm Password"
+                required
+              />
+            </div>
+          </CardContent>
+          <CardFooter>
+            <Button type="submit" disabled={form.formState.isSubmitting}>
+              {form.formState.isSubmitting ? "Loading..." : "Register"}
+            </Button>
+          </CardFooter>
+        </Card>
+      </form>
+      {/* </Form> */}
     </FormProvider>
   );
 };
