@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
+import { useRegisterCustomerMutation } from "@/app/common/api/auth/auth";
 
 const RegisterCustomerSchema = zod
   .object({
@@ -34,7 +35,7 @@ const RegisterCustomerSchema = zod
 type RegisterCustomerInput = zod.infer<typeof RegisterCustomerSchema>;
 
 const RegisterCustomerForm = () => {
-  const createCustomer = useCreateCustomer();
+  const createCustomer = useRegisterCustomerMutation();
   const form = useForm<RegisterCustomerInput>({
     mode: "onChange",
     resolver: zodResolver(RegisterCustomerSchema),
@@ -49,14 +50,14 @@ const RegisterCustomerForm = () => {
         console.log(customer.id);
         toast({
           title: "Success",
-          description: "The quick brown fox jumps over the lazy dog.",
+          description: "Account created successfully. Please login.",
           color: "green",
         });
       },
       onError: (error) => {
         toast({
           title: "Error",
-          description: error.message,
+          description: error,
           color: "red",
         });
       },

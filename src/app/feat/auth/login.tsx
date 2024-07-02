@@ -12,6 +12,9 @@ import {
   CardContent,
   CardFooter,
 } from "@/components/ui/card";
+import { useLoginMutation } from "@/app/common/api/auth/auth";
+import { useToast } from "@/components/ui/use-toast";
+import { useAuth } from "@/app/common/contexts/auth.context";
 
 const loginSchema = zod.object({
   email: zod.string().email(),
@@ -22,24 +25,37 @@ type LoginInput = zod.infer<typeof loginSchema>;
 //TODO find out how to store a token in the local storage
 
 const LoginCustomerForm = () => {
-  const { client } = useMedusa();
-  const { refetch: refetchCustomer, error } = useMeCustomer();
+  const { toast } = useToast();
+  const auth = useAuth();
+  const login = useLoginMutation();
   const form = useForm<LoginInput>({
     mode: "onChange",
     resolver: zodResolver(loginSchema),
   });
 
   const handleLogin = async ({ email, password }: LoginInput) => {
-    console.log("email", email);
-    console.log("password,", password);
-    const response = await client.auth.getToken({
-      email,
-      password,
-    });
-
-    if (response.access_token) {
-      refetchCustomer();
-    }
+    login.mutate(
+      { email, password },
+      {
+        onSuccess: ({ token }) => {
+          console.log(token);
+          // auth.login(token);
+          toast({
+            title: "Success",
+            description: "Login successful.",
+            color: "green",
+          });
+        },
+        onError: (error) => {
+          console.log(error);
+          toast({
+            title: "Error",
+            description: error,
+            color: "red",
+          });
+        },
+      }
+    );
   };
 
   return (
