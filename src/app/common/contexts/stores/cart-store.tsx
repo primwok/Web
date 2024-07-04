@@ -1,3 +1,4 @@
+"use client";
 export const CART_STORE_KEY = "cart";
 
 export class CartStore {
