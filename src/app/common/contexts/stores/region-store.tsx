@@ -1,3 +1,4 @@
+"use client";
 export const REGION_STORE_KEY = "region";
 
 export class RegionStore {

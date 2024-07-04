@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { useCreateCustomer } from "medusa-react";
 import * as zod from "zod";
@@ -14,6 +15,9 @@ import {
 } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
+// import { useRegisterCustomerMutation } from "@/app/common/api/auth/auth";
+import { useFormState } from "react-dom";
+import { registerCustomer } from "@/app/common/api/auth/actions";
 
 const RegisterCustomerSchema = zod
   .object({
@@ -34,45 +38,21 @@ const RegisterCustomerSchema = zod
 type RegisterCustomerInput = zod.infer<typeof RegisterCustomerSchema>;
 
 const RegisterCustomerForm = () => {
-  const createCustomer = useCreateCustomer();
   const form = useForm<RegisterCustomerInput>({
     mode: "onChange",
     resolver: zodResolver(RegisterCustomerSchema),
   });
-  const { toast } = useToast();
-
-  const onSubmit = (customerData: RegisterCustomerInput) => {
-    // console.log("customerData", customerData);
-    const { password_confirmation, ...rest } = customerData;
-    createCustomer.mutate(rest, {
-      onSuccess: ({ customer }) => {
-        console.log(customer.id);
-        toast({
-          title: "Success",
-          description: "The quick brown fox jumps over the lazy dog.",
-          color: "green",
-        });
-      },
-      onError: (error) => {
-        toast({
-          title: "Error",
-          description: error.message,
-          color: "red",
-        });
-      },
-    });
-  };
+  const [state, formAction] = useFormState(registerCustomer as any, {
+    error: null,
+  });
 
   return (
     <FormProvider {...form}>
-      {/* <Form {...form} onSubmit={form.handleSubmit(onSubmit)}> */}
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form action={formAction} className="space-y-8">
         <Card>
           <CardHeader>
             <CardTitle>Register</CardTitle>
-            <CardDescription>
-              Log in to your account to access your profile.
-            </CardDescription>
+            <CardDescription>Create your account.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">
             <div className="space-y-1">
@@ -104,13 +84,17 @@ const RegisterCustomerForm = () => {
             </div>
           </CardContent>
           <CardFooter>
-            <Button type="submit" disabled={form.formState.isSubmitting}>
-              {form.formState.isSubmitting ? "Loading..." : "Register"}
-            </Button>
+            <div className="flex flex-col space-y-2">
+              <div className="text-red-500">
+                {state.error ? state.error : null}
+              </div>
+              <Button type="submit" disabled={form.formState.isSubmitting}>
+                {form.formState.isSubmitting ? "Loading..." : "Register"}
+              </Button>
+            </div>
           </CardFooter>
         </Card>
       </form>
-      {/* </Form> */}
     </FormProvider>
   );
 };

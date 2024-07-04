@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Package2 } from "lucide-react";
@@ -21,6 +22,7 @@ import {
 import { CircleUser, Menu, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Regions } from "../home/regions";
+import { AuthPopup } from "../auth/auth-popup";
 
 export const Header = () => {
   return (
@@ -31,9 +33,9 @@ export const Header = () => {
           className="flex items-center gap-2 text-lg font-semibold md:text-base"
         >
           <Package2 className="h-6 w-6" />
-          <span className="sr-only">Acme Inc</span>
+          <span className="sr-only">Primwok</span>
         </Link>
-        <Link
+        {/* <Link
           href="#"
           className="text-foreground transition-colors hover:text-foreground"
         >
@@ -62,7 +64,7 @@ export const Header = () => {
           className="text-muted-foreground transition-colors hover:text-foreground"
         >
           Analytics
-        </Link>
+        </Link> */}
       </nav>
       <Sheet>
         <SheetTrigger asChild>
