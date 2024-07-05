@@ -39,6 +39,7 @@ interface CSelectProps {
     text: string;
   };
   name: string;
+  default?: string;
 }
 
 export const CSelect: React.FC<React.PropsWithoutRef<CSelectProps>> = (
@@ -53,7 +54,10 @@ export const CSelect: React.FC<React.PropsWithoutRef<CSelectProps>> = (
       render={({ field }) => (
         <FormItem>
           <FormLabel>{props.label}</FormLabel>
-          <Select onValueChange={field.onChange} defaultValue={field.value}>
+          <Select
+            onValueChange={field.onChange}
+            defaultValue={props.default ?? field.value}
+          >
             <FormControl>
               <SelectTrigger>
                 <SelectValue placeholder={props.placeholder} />

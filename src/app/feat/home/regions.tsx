@@ -1,28 +1,39 @@
 "use client";
 
+import { getRegions } from "@/app/common/api/regions/actions";
+import { useRegionsQuery } from "@/app/common/api/regions/regions";
+import { useRegions } from "@/app/common/contexts/region.context";
 import { CSelect } from "@/components/ui/custom/select";
 import { Select } from "@/components/ui/select";
-import { useRegions } from "medusa-react";
+import { useQuery } from "@tanstack/react-query";
+import { useCallback, useEffect } from "react";
+import { useFormState } from "react-dom";
+// import { useRegions } from "medusa-react";
 import { FormProvider, useForm } from "react-hook-form";
 
 export const Regions = () => {
-  const { regions, isLoading } = useRegions();
+  const regions = useRegionsQuery();
+  const state = useRegions();
   const form = useForm();
+  const selectedRegion = form.watch("regions");
 
-  const onSubmit = (data: any) => {
-    console.log(data);
-  };
+  useEffect(() => {
+    if (selectedRegion) {
+      state?.setRegion(selectedRegion);
+    }
+  }, [selectedRegion]);
 
   return (
     <div>
-      {isLoading && <span>Loading...</span>}
+      {/* {isLoading && <span>Loading...</span>} */}
       <FormProvider {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form>
           <CSelect
-            options={regions?.map((region) => ({
+            options={regions?.data?.regions?.map((region) => ({
               value: region.id,
               label: region.name,
             }))}
+            default={state?.state.region ?? undefined}
             // label="Regions"
             name="regions"
             placeholder="Select a region"
