@@ -1,7 +1,12 @@
 "use client";
 export const REGION_STORE_KEY = "region";
 
-export class RegionStore {
+export interface IRegionStore {
+  get: () => string | null;
+  set: (value: string) => void;
+}
+
+export class RegionStore implements IRegionStore {
   constructor(private key: string) {}
 
   get() {
