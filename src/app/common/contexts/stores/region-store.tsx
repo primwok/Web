@@ -10,11 +10,16 @@ export class RegionStore implements IRegionStore {
   constructor(private key: string) {}
 
   get() {
-    return localStorage.getItem(this.key);
+    if (typeof window !== "undefined") {
+      return localStorage.getItem(this.key);
+    }
+    return null;
   }
 
   set(value: string) {
-    return localStorage.setItem(this.key, value);
+    if (typeof window !== "undefined") {
+      return localStorage.setItem(this.key, value);
+    }
   }
 }
 

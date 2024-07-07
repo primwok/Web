@@ -1,3 +1,4 @@
+"use server"
 import { medusaClient } from "@/lib/client"
 
 export const getRegions = async () => {
