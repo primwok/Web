@@ -4,10 +4,13 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "medusa-public-images.s3.eu-west-1.amazonaws.com",
-        port: "",
-        pathname: "/*",
+        hostname: "*",
+        // hostname: "medusa-public-images.s3.eu-west-1.amazonaws.com",
       },
+      // {
+      //   protocol: "https",
+      //   hostname: "via.placeholder.com",
+      // },
     ],
   },
 };

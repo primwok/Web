@@ -4,5 +4,9 @@ export const PageWidth: React.FC<
     width?: string;
   }>
 > = ({ children, width }) => {
-  return <div className={`max-w-[1920px] w-full`}>{children}</div>;
+  return (
+    <div className={`max-w-[1440px] w-full h-full mr-auto ml-auto`}>
+      {children}
+    </div>
+  );
 };
