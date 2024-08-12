@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/carousel";
 import { PageWidth } from "./page-width";
 
-export function CarouselDemo() {
+export function SimpleCarousel() {
   return (
     <PageWidth>
       <Carousel className="w-full">

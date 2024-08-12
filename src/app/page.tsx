@@ -6,12 +6,14 @@ import { ProductList } from "./feat/products/list";
 import { PageWidth } from "./common/ui/page-width";
 import { Button } from "@/components/ui/button";
 import introImg from "../../public/intro-2.jpeg";
-import { CMainNavigationMenu } from "@/app/common/ui/navigation-menu";
-import { CarouselDemo } from "./common/ui/carousel";
+import { CMainNavigationMenu } from "@/app/common/ui/main-navigation-menu";
+import { SimpleCarousel } from "./common/ui/simple-carousel";
 import { ImageTextBlock } from "./common/ui/image-text-block";
-import { CText } from "./common/ui/tite";
+import { CText } from "./common/ui/text-block";
 import { CNotificationBar } from "./common/ui/notification-bar";
 import { ComboCarousel } from "./common/ui/combo-carousel";
+import { ContentOverlayCarousel } from "./common/ui/content-overlay-carousel";
+import { CFooter } from "./common/ui/footer";
 
 export default function Home() {
   return (
@@ -80,7 +82,7 @@ export default function Home() {
         <CMainNavigationMenu />
       </div>
       <div className="className">
-        <CarouselDemo />
+        <SimpleCarousel />
       </div>
       <div className="image-with-text">
         <ImageTextBlock
@@ -102,10 +104,9 @@ export default function Home() {
         />
         <CText tag="h5" content="View all" spacingT="1x" type="link" />
         <ComboCarousel />
+        <ContentOverlayCarousel />
       </div>
-      <PageWidth>
-        <div className="footer  h-[20vw] bg-blue-500 mt-[100px]"></div>
-      </PageWidth>
+      <CFooter />
     </div>
   );
 }

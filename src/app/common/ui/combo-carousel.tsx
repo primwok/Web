@@ -569,15 +569,13 @@ const Page: React.FC<{
   const gridGap = "gap-4";
 
   return (
-    <PageWidth>
-      <div className={`grid ${gridColumns} ${gridRows} ${gridGap}`}>
-        {data.items
-          .sort((a, b) => (a.type !== "simple" ? -1 : 1))
-          .map((item, index) => (
-            <GridItem key={index} item={item} />
-          ))}
-      </div>
-    </PageWidth>
+    <div className={`grid ${gridColumns} ${gridRows} ${gridGap}`}>
+      {data.items
+        .sort((a, b) => (a.type !== "simple" ? -1 : 1))
+        .map((item, index) => (
+          <GridItem key={index} item={item} />
+        ))}
+    </div>
   );
 };
 
