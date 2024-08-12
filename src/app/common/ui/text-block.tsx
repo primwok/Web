@@ -120,35 +120,35 @@ export const CText: React.FC<
       : "mr-0";
 
   return (
-    <PageWidth>
-      {type === "text" ? (
-        <h3
-          className={
-            size +
-            " " +
-            orient +
-            " " +
-            marginT +
-            " " +
-            marginB +
-            " " +
-            marginL +
-            " " +
-            marginR
-          }
-        >
-          {content}
-        </h3>
-      ) : (
-        <div
-          className={`flex ${orientLink} ${marginT} 
+    // <PageWidth>
+    type === "text" ? (
+      <h3
+        className={
+          size +
+          " " +
+          orient +
+          " " +
+          marginT +
+          " " +
+          marginB +
+          " " +
+          marginL +
+          " " +
+          marginR
+        }
+      >
+        {content}
+      </h3>
+    ) : (
+      <div
+        className={`flex ${orientLink} ${marginT} 
         ${marginB} ${marginL} ${marginR}
         `}
-        >
-          <Link href={url ? url : "#"}>{content}</Link>
-          {underline && <div className="underline"></div>}
-        </div>
-      )}
-    </PageWidth>
+      >
+        <Link href={url ? url : "#"}>{content}</Link>
+        {underline && <div className="underline"></div>}
+      </div>
+    )
+    // </PageWidth>
   );
 };

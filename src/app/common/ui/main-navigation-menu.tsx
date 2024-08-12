@@ -59,7 +59,7 @@ const components: { title: string; href: string; description: string }[] = [
 export function CMainNavigationMenu() {
   return (
     <PageWidth>
-      <div className="flex items-center gap-4 py-3 w-full">
+      <div className="flex items-center gap-4 py-3 w-full bg-white">
         <Logo />
         <div className="flex items-center justify-between w-full">
           <NavigationMenuSection type="1" />
