@@ -150,7 +150,7 @@ const columns = [
 export const CFooter = () => {
   return (
     <PageWidth>
-      <footer>
+      <footer className="py-6">
         <div className="container">
           <div className="grid grid-cols-12">
             {columns.map((column, index) => (
