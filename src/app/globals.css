@@ -33,6 +33,7 @@
       --ring: 222.2 84% 4.9%;
 
       --radius: 0.5rem;
+
     }
 
     .dark {
@@ -70,9 +71,11 @@
     * {
       @apply border-border;
     }
+    
     body {
       @apply bg-background text-foreground;
     }
+
   }
 
   /* Add this to your global CSS file */

@@ -212,7 +212,7 @@ const GridItem: React.FC<{ item: GridItem }> = ({ item }) => {
             <CText
               tag="h3"
               content={item.productName}
-              orientation="center"
+              placement="center"
               type="text"
             >
               {item.productName}

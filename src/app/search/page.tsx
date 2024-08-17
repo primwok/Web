@@ -48,22 +48,17 @@ export const SearchPage = () => {
                   <CText
                     tag="h6"
                     content="FILTERS"
-                    orientation="left"
+                    placement="left"
                     type="text"
                   />
                   <CText
                     tag="p"
                     content="Clear All"
-                    orientation="left"
+                    placement="left"
                     type="text"
                   />
                 </div>
-                <CText
-                  tag="p"
-                  content="Sort by"
-                  orientation="left"
-                  type="text"
-                />
+                <CText tag="p" content="Sort by" placement="left" type="text" />
               </div>
             </div>
             <div className="filter-grid grid grid-cols-12 gap-4">
@@ -104,7 +99,7 @@ const FIlterItem = () => {
     <div className="flex flex-col bg-white p-3 w-full">
       <Collapsible open={isOpen} onOpenChange={setIsOpen}>
         <div className="flex items-center justify-between">
-          <CText tag="h6" content="Price" orientation="left" type="text" />
+          <CText tag="h6" content="Price" placement="left" type="text" />
           <CollapsibleTrigger>
             <Button variant="ghost" size="sm" className="w-9 p-0">
               <ChevronsUpDown className="h-4 w-4" />
@@ -135,17 +130,17 @@ const GridItem = () => {
       <div className="col-span-9 p-2 flex flex-col gap-2 justify-center">
         <h5>Product name</h5>
         <div className="flex flex-col md:flex-row items-start md:justify-start gap-3 w-full">
-          <CText tag="h6" content="$18.44" orientation="left" type="text" />
-          <CText tag="h6" content="In Stock" orientation="left" type="text" />
+          <CText tag="h6" content="$18.44" placement="left" type="text" />
+          <CText tag="h6" content="In Stock" placement="left" type="text" />
         </div>
         <div className="hidden md:flex md:flex-row gap-3">
-          <CText tag="p" type="link" content="Learn more" orientation="left" />
-          <CText tag="p" type="link" content="Buy now" orientation="left" />
+          <CText tag="p" type="link" content="Learn more" placement="left" />
+          <CText tag="p" type="link" content="Buy now" placement="left" />
         </div>
       </div>
       <div className="col-span-12 flex flex-col gap-2 items-center md:hidden">
         <Button className="">Buy now</Button>
-        <CText tag="p" type="link" content="Learn more" orientation="left" />
+        <CText tag="p" type="link" content="Learn more" placement="left" />
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ export const CText: React.FC<
   React.PropsWithChildren<{
     tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p";
     content: string;
-    orientation?: "left" | "right" | "center";
+    placement?: "left" | "right" | "center";
     spacingT?: "1x" | "2x" | "3x" | "4x" | "5x" | "6x" | "7x";
     spacingB?: "1x" | "2x" | "3x" | "4x" | "5x" | "6x" | "7x";
     spacingL?: "1x" | "2x" | "3x" | "4x" | "5x" | "6x" | "7x";
@@ -18,7 +18,7 @@ export const CText: React.FC<
 > = ({
   tag,
   content,
-  orientation,
+  placement: orientation,
   spacingT,
   spacingB,
   spacingL,

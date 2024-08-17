@@ -99,7 +99,7 @@ ListItem.displayName = "ListItem";
 
 export const Logo = () => {
   return (
-    <Link href="/" passHref className="text-xl font-bold">
+    <Link href="/" passHref className="text-xl uppercase font-bold ">
       Primwok
     </Link>
   );

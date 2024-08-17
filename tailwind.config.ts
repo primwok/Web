@@ -7,9 +7,30 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-	],
+  ],
   prefix: "",
   theme: {
+    fontFamily: {
+      sans: ["Poppins", "sans-serif"],
+    },
+    fontSize: {
+      "xs": ["0.64rem", { letterSpacing: "0.03em", }],
+      "sm": ["0.8rem", { letterSpacing: "0.03em" }],
+      "base": ["1rem", { letterSpacing: "0.03em" }],
+      "lg": ["1.25rem", { letterSpacing: "0.03em" }],
+      "xl": ["1.563rem", { letterSpacing: "0.03em" }],
+      "2xl": ["1.953rem", { letterSpacing: "0.03em" }],
+      "3xl": ["2.441rem", { letterSpacing: "0.03em" }],
+      "4xl": ["3.052rem", { letterSpacing: "0.03em" }],
+      "5xl": ["3.815rem", { letterSpacing: "0.03em" }],
+      "6xl": ["4.768rem", { letterSpacing: "0.03em" }],
+      "7xl": ["5.96rem", { letterSpacing: "0.03em" }],
+      "8xl": ["7.451rem", { letterSpacing: "0.03em" }],
+      "9xl": ["9.313rem", { letterSpacing: "0.03em" }],
+    },
+    lineHeight: {
+      "leading-normal": "1.85",
+    },
     container: {
       center: true,
       padding: "2rem",
