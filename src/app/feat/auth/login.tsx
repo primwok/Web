@@ -18,7 +18,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { useAuth } from "@/app/common/contexts/auth.context";
 import { useRouter } from "next/navigation";
 import { useFormState } from "react-dom";
-import { loginCustomer } from "@/app/common/api/auth/actions";
+import { loginCustomer } from "@/app/api/auth/actions";
 import { useCallback, useEffect } from "react";
 
 const loginSchema = zod.object({

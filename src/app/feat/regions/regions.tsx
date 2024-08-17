@@ -1,7 +1,7 @@
 "use client";
 
-import { getRegions } from "@/app/common/api/regions/actions";
-import { useRegionsQuery } from "@/app/common/api/regions/query";
+import { getRegions } from "@/app/api/regions/actions";
+import { useRegionsQuery } from "@/app/api/regions/query";
 import { useRegions } from "@/app/common/contexts/region.context";
 import { CSelect } from "@/components/ui/custom/select";
 import { Select } from "@/components/ui/select";

@@ -1,7 +1,7 @@
 import {
   useAddShippingMethodMutation,
   useListShippingOptionsQuery,
-} from "@/app/common/api/checkout/query";
+} from "@/app/api/checkout/query";
 import { useCart } from "@/app/common/contexts/cart.context";
 import { CInput } from "@/components/ui/custom/input";
 import { CSelect } from "@/components/ui/custom/select";

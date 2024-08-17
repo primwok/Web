@@ -1,12 +1,12 @@
 "use client";
 
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { listProducts } from "@/app/common/api/products/action";
+import { listProducts } from "@/app/api/products/action";
 import {
   RegionContext,
   useRegions,
 } from "@/app/common/contexts/region.context";
-import { useProductsQuery } from "@/app/common/api/products/query";
+import { useProductsQuery } from "@/app/api/products/query";
 import Image from "next/image";
 import Link from "next/link";
 

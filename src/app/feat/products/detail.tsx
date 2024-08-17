@@ -1,6 +1,6 @@
 "use client";
-import { useCartUtil } from "@/app/common/api/cart/hooks";
-import { useProductByIdQuery } from "@/app/common/api/products/query";
+import { useCartUtil } from "@/app/api/cart/hooks";
+import { useProductByIdQuery } from "@/app/api/products/query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
