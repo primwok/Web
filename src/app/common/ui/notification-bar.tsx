@@ -23,7 +23,7 @@ export const CNotificationBar: React.FC<{
           bgColor +
           " " +
           textColor +
-          " w-full h-8 flex items-center justify-center"
+          " w-full h-8 flex items-center justify-center p-2"
         }
       >
         <p className="text-white text-sm">{content}</p>

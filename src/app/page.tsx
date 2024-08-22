@@ -76,15 +76,11 @@ export default function Home() {
     // <ProductList />
     //   </main>
     // </div>
-    <div>
+    <div className="flex flex-col min-h-screen">
       <CNotificationBar content="This is a notification" type="info" />
-      <div className="navigation-menu">
-        <CMainNavigationMenu />
-      </div>
-      <div className="className">
-        <SimpleCarousel />
-      </div>
-      <div className="image-with-text">
+      <CMainNavigationMenu />
+      <SimpleCarousel />
+      {/* <div className="image-with-text">
         <ImageTextBlock
           title="The Primwok collection"
           subtitle="SOME COOL TEXT"
@@ -106,7 +102,7 @@ export default function Home() {
         <ComboCarousel />
         <ContentOverlayCarousel />
       </div>
-      <CFooter />
+      <CFooter /> */}
     </div>
   );
 }
