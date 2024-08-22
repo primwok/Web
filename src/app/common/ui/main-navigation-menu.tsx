@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 // import { Icons } from "@/components/ui/icons"
-import { Search, ShoppingBag, User } from "lucide-react";
+import { Menu, Search, ShoppingBag, User } from "lucide-react";
 
 import {
   NavigationMenu,
@@ -17,6 +17,8 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { PageWidth } from "./page-width";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -59,13 +61,42 @@ const components: { title: string; href: string; description: string }[] = [
 export function CMainNavigationMenu() {
   return (
     <PageWidth>
-      <div className="flex items-center gap-4 py-3 w-full bg-white">
-        <Logo />
-        <div className="flex items-center justify-between w-full">
+      <header className="sticky top-0 flex items-center gap-4 py-3 w-full bg-white">
+        <nav className="hidden md:flex items-center justify-between w-full">
+          <Logo />
           <NavigationMenuSection type="1" />
           <NavigationMenuSection type="2" />
+        </nav>
+        <div className="flex md:hidden justify-between items-center px-2 w-full">
+          <Logo />
+
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button
+                variant="outline"
+                size="icon"
+                className="shrink-0 md:hidden"
+              >
+                <Menu className="h-5 w-5" />
+                <span className="sr-only">Toggle navigation menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right">
+              <nav className="flex flex-col p-4 gap-3">
+                <Link href="#" className="">
+                  Dashboard
+                </Link>
+                <Link href="#" className="">
+                  Orders
+                </Link>
+                <Link href="#" className="">
+                  Products
+                </Link>
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
-      </div>
+      </header>
     </PageWidth>
   );
 }
@@ -99,7 +130,11 @@ ListItem.displayName = "ListItem";
 
 export const Logo = () => {
   return (
-    <Link href="/" passHref className="text-xl uppercase font-bold ">
+    <Link
+      href="/"
+      passHref
+      className="text-normal md:text-xl uppercase font-bold "
+    >
       Primwok
     </Link>
   );
