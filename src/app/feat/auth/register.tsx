@@ -17,7 +17,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
 // import { useRegisterCustomerMutation } from "@/app/common/api/auth/auth";
 import { useFormState } from "react-dom";
-import { registerCustomer } from "@/app/common/api/auth/actions";
+import { registerCustomer } from "@/app/api/auth/actions";
 
 const RegisterCustomerSchema = zod
   .object({

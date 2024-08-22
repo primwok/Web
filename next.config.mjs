@@ -5,13 +5,12 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "*",
-        // hostname: "medusa-public-images.s3.eu-west-1.amazonaws.com",
       },
-      // {
-      //   protocol: "https",
-      //   hostname: "via.placeholder.com",
-      // },
     ],
+  },
+  generateBuildId: async () => {
+    // You can, for example, get the latest git commit hash here
+    return process.env.NEXT_PUBLIC_BUILD_ID;
   },
 };
 
