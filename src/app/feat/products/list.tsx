@@ -1,13 +1,24 @@
 "use client";
 
-import { useProducts } from "medusa-react";
-import { Product } from "@medusajs/medusa";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { listProducts } from "@/app/common/api/products/action";
+import {
+  RegionContext,
+  useRegions,
+} from "@/app/common/contexts/region.context";
+import { useProductsQuery } from "@/app/common/api/products/query";
+import Image from "next/image";
+import Link from "next/link";
 
-const ProductList = () => {
-  const { products, isLoading } = useProducts({
-    // category_id: ["cat_123"],
+export const ProductList = () => {
+  // const { products, isLoading } = useProducts({
+  //   // category_id: ["cat_123"],
+  // });
+  const { state } = useRegions() as RegionContext;
+  const { data, isLoading } = useProductsQuery({
+    region_id: state.region as string,
   });
+  const products = data?.products;
 
   return (
     <section>
@@ -17,15 +28,26 @@ const ProductList = () => {
         {products &&
           products.length > 0 &&
           products?.map((product) => (
-            <Card key={product.id}>
-              <CardContent></CardContent>
-              <CardFooter className="flex justify-between items-center">
-                <div className="flex flex-col gap-2">
-                  <h6>{product.title}</h6>
-                  <h6>{product.variants.at(0)?.calculated_price_incl_tax}</h6>
-                </div>
-              </CardFooter>
-            </Card>
+            <Link href={`/products/${product.id}`} key={product.id}>
+              <Card key={product.id}>
+                <CardContent>
+                  <Image
+                    width={200}
+                    height={200}
+                    src={
+                      product.thumbnail ? product.thumbnail : "/no-image.png"
+                    }
+                    alt={product.title || "Product Image"}
+                  />
+                </CardContent>
+                <CardFooter className="flex justify-between items-center">
+                  <div className="flex flex-col gap-2">
+                    <h6>{product.title}</h6>
+                    <h6>{product.variants.at(0)?.calculated_price_incl_tax}</h6>
+                  </div>
+                </CardFooter>
+              </Card>
+            </Link>
           ))}
       </div>
     </section>

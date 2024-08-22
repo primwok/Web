@@ -24,6 +24,7 @@ export class AuthStore implements IAuthStore {
 		if (typeof window !== 'undefined') {
 			return localStorage.setItem(this.key, value);
 		}
+
 	}
 
 	clear() {

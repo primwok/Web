@@ -1,15 +1,45 @@
 "use client";
+
+import { clear } from "console";
+import { Cart } from "medusa-react";
+import { CartState } from "../cart.context";
+
 export const CART_STORE_KEY = "cart";
 
-export class CartStore {
+export interface ICartStore {
+  get: () => string | null;
+  set: (value: CartState["cart"]) => void;
+  clear: () => void;
+}
+
+export class CartStore implements ICartStore {
   constructor(private key: string) {}
 
   get() {
-    return localStorage.getItem(this.key);
+    if (typeof window !== "undefined") {
+      try {
+        const cart = localStorage.getItem(this.key);
+        return JSON.parse(cart as string);
+      } catch (error) {
+        console.error("Error getting cart", error);
+      }
+    }
+    return null;
   }
 
-  set(value: string) {
-    return localStorage.setItem(this.key, value);
+  set(value: CartState["cart"]) {
+    if (typeof window !== "undefined") {
+      try {
+        const cart = JSON.stringify(value);
+        return localStorage.setItem(this.key, cart);
+      } catch (error) {
+        console.error("Error setting cart", error);
+      }
+    }
+  }
+
+  clear() {
+    return localStorage.removeItem(this.key);
   }
 }
 

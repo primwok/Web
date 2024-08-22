@@ -6,7 +6,7 @@ interface RegionState {
   region: string | null;
 }
 
-interface RegionContext {
+export interface RegionContext {
   setRegion: (region: string) => void;
   state: RegionState;
 }
