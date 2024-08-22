@@ -12,7 +12,7 @@ export const CNotificationBar: React.FC<{
       : "bg-red-600";
   const textColor =
     type === "info"
-      ? "text-blue-600"
+      ? "text-blue-800"
       : type === "warning"
       ? "text-yellow-600"
       : "text-red-600";
