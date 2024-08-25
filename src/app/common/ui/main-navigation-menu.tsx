@@ -61,13 +61,15 @@ const components: { title: string; href: string; description: string }[] = [
 export function CMainNavigationMenu() {
   return (
     <PageWidth>
-      <header className="sticky top-0 flex items-center gap-4 py-3 w-full bg-white z-[10]">
-        <nav className="hidden md:flex items-center justify-between w-full">
+      <header className="sticky top-0 flex items-center gap-4 py-4 w-full bg-white z-[10]">
+        <nav className="hidden xl:flex items-center gap-8 w-full">
           <Logo />
-          <NavigationMenuSection type="1" />
-          <NavigationMenuSection type="2" />
+          <div className="flex justify-between items-center w-full">
+            <NavigationMenuSection type="1" />
+            <NavigationMenuSection type="2" />
+          </div>
         </nav>
-        <div className="flex md:hidden justify-between items-center px-2 w-full">
+        <div className="flex xl:hidden justify-between items-center px-2 w-full">
           <Logo />
 
           <Sheet>
@@ -75,7 +77,7 @@ export function CMainNavigationMenu() {
               <Button
                 variant="outline"
                 size="icon"
-                className="shrink-0 md:hidden"
+                className="shrink-0 xl:hidden"
               >
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">Toggle navigation menu</span>
@@ -133,7 +135,7 @@ export const Logo = () => {
     <Link
       href="/"
       passHref
-      className="text-normal md:text-xl uppercase font-bold "
+      className="text-normal md:text-lg uppercase font-bold md:px-4 tracking-wider	"
     >
       Primwok
     </Link>
@@ -157,7 +159,9 @@ const NavigationMenuSection: React.FC<
         {type === "1" && (
           <>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+              <NavigationMenuTrigger className="font-bold">
+                Shop
+              </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                   <li className="row-span-3">
@@ -194,7 +198,9 @@ const NavigationMenuSection: React.FC<
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>Components</NavigationMenuTrigger>
+              <NavigationMenuTrigger className="font-bold">
+                Mobile
+              </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                   {components.map((component) => (
@@ -211,15 +217,19 @@ const NavigationMenuSection: React.FC<
             </NavigationMenuItem>
             <NavigationMenuItem>
               <Link href="/docs" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Documentation
+                <NavigationMenuLink
+                  className={`${navigationMenuTriggerStyle()}`}
+                >
+                  TV & Audio
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <Link href="/docs" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Documentation
+                <NavigationMenuLink
+                  className={`${navigationMenuTriggerStyle()}`}
+                >
+                  Accessories
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>

@@ -14,6 +14,14 @@ import { PageWidth } from "./page-width";
 import Autoplay from "embla-carousel-autoplay";
 import { Button } from "@/components/ui/button";
 
+const images = [
+  "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://media.istockphoto.com/id/1464547973/photo/man-earphones-or-laptop-typing-in-cafe-or-restaurant-for-university-college-or-school.jpg?s=1024x1024&w=is&k=20&c=GMp4GcAkqNGq-5OatB0gHeODucf7WTeE2rexdSeVND4=",
+  "https://images.unsplash.com/photo-1479920252409-6e3d8e8d4866?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1483389127117-b6a2102724ae?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1620862657788-a403bdf6dd63?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+];
+
 export function SimpleCarousel() {
   const plugin = React.useRef(
     Autoplay({ delay: 8000, stopOnInteraction: true })
@@ -36,13 +44,13 @@ export function SimpleCarousel() {
               <Card
                 className="rounded-none"
                 style={{
-                  backgroundImage: `url(https://images.unsplash.com/photo-1723642019190-b44549d0ed21?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NDYyMzh8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MjQzNTYzNjl8&ixlib=rb-4.0.3&q=80&w=1080)`,
+                  backgroundImage: `url(${images[index]})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
               >
                 <CardContent
-                  className="flex items-center justify-center  p-6 h-[83vh] md:h-[30vw] text-white
+                  className="flex items-center justify-center  p-6 h-[75vh] sm:h-[70vw] md:h-[60vw] lg:h-[34vw] text-white
                   bg-gradient-to-t from-transparent to-black"
                 >
                   <div
@@ -50,16 +58,24 @@ export function SimpleCarousel() {
                     
                   "
                   >
-                    <h3 className="text-lg font-semibold">Product Title</h3>
-                    <h2 className="text-2xl font-bold md:max-w-lg	break-normal">
-                      Designed for your everyday life
+                    <h3 className="text-base font-semibold">
+                      Product Title {index + 1}
+                    </h3>
+                    <h2 className="text-4xl font-bold md:max-w-lg	p-0">
+                      Designed for your
+                      <br /> everyday life
                     </h2>
-                    <p className="text-sm md:text-base font-normal md:max-w-lg	break-normal	">
+                    <p className="text-sm md:text-base font-normal md:max-w-lg	">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Sed do eiusmod tempor incididunt ut labore et dolore magna
                       aliqua.
                     </p>
-                    <Button className="rounded-xl mt-5 p-5">Shop Now</Button>
+                    <Button
+                      className="rounded-lg uppercase mt-5 px-8 py-6 font-bold bg-white text-black"
+                      size={"sm"}
+                    >
+                      Shop Now
+                    </Button>
                   </div>
                 </CardContent>
               </Card>

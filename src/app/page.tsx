@@ -80,29 +80,29 @@ export default function Home() {
       <CNotificationBar content="This is a notification" type="info" />
       <CMainNavigationMenu />
       <SimpleCarousel />
-      {/* <div className="image-with-text">
-        <ImageTextBlock
-          title="The Primwok collection"
-          subtitle="SOME COOL TEXT"
-          image={introImg.src}
-          buttonTitle="SHOP NOW"
-          direction="right"
-          description="primwok quality delivers, and you enjoy"
-        />
-      </div>
-      <div className="offers">
+      <ImageTextBlock
+        title="The Primwok collection"
+        subtitle="SOME COOL TEXT"
+        image={introImg.src}
+        buttonTitle="SHOP NOW"
+        direction="right"
+        description="Primwok quality delivers, and you enjoy"
+      />
+      <div className="offers my-5">
         <CText
           tag="h2"
           content="Shop all latest offers and innovations
 "
-          spacingT="5x"
+          spacingT="1x"
           type="text"
         />
         <CText tag="h5" content="View all" spacingT="1x" type="link" />
         <ComboCarousel />
+      </div>
+      <div className="my-5">
         <ContentOverlayCarousel />
       </div>
-      <CFooter /> */}
+      <CFooter />
     </div>
   );
 }
