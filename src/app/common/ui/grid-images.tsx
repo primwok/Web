@@ -25,33 +25,34 @@ export interface IGridItem {
 export const SimpleImageCard: React.FC<{ item: IGridItem }> = ({ item }) => {
   return (
     <Card
-      className={`group bg-gray-200 cursor-pointer
+      className={`group bg-gray-100 cursor-pointer grid grid-rows-[2.5rem,10.5rem,7.5rem] rounded-xl shadow-none
 			  ${
           item.type === "simple"
             ? "row-span-1 col-span-1 col-span-1"
             : "row-span-2 col-span-2"
         }
-		 grid-rows-5
+		 
 		  `}
     >
-      <CardHeader className="row-span-1">
+      <CardHeader className="row-span-1 p-3 border-box rounded-t-xl">
         {item.new && (
-          <span className="rounded-lg py-1 px-2 border-box text-xs bg-blue-500 text-white w-fit">
+          <span className="rounded-lg py-1 px-2 border-box text-xs bg-blue-500 text-white w-fit ">
             New
           </span>
         )}
       </CardHeader>
-      <CardContent className="row-span-3">
-        <div className="flex flex-col gap-4 justify-center items-center">
+      <CardContent className="row-span-1">
+        <div className="h-full relative p-2">
           <Image
             src={item.image}
             alt={item.productName}
-            width={150}
-            height={150}
+            layout="fill"
+            objectFit="contain"
+            objectPosition="center"
           />
         </div>
       </CardContent>
-      <CardFooter className="row-span-2">
+      <CardFooter className="row-span-1 rounded-b-xl pb-3">
         <div className="grid grid-rows-3 w-full items-center jutify-center ">
           <div className="title-container flex justify-center items-center">
             <h5 className="text-lg font-medium row-span-1">
@@ -95,7 +96,7 @@ export const MainImageCard1: React.FC<{
 }> = ({ item, border }) => {
   return (
     <Card
-      className="group bg-gray-200 cursor-pointer row-span-2 col-span-2
+      className="group bg-gray-100 cursor-pointer row-span-2 col-span-2
 		  grid grid-rows-7
 	  "
     >
@@ -162,7 +163,7 @@ export const MainImageCard1: React.FC<{
 export const MainImageCard3: React.FC<{ item: IGridItem }> = ({ item }) => {
   return (
     <Card
-      className="group bg-gray-200 cursor-pointer row-span-2 col-span-2
+      className="group bg-gray-100 cursor-pointer row-span-2 col-span-2
 		grid grid-rows-7
 	"
     >
@@ -236,7 +237,7 @@ export const MainImageCard3: React.FC<{ item: IGridItem }> = ({ item }) => {
 
 export const MainImageCard4: React.FC<{ item: IGridItem }> = ({ item }) => {
   return (
-    <Card className="group bg-gray-200 cursor-pointer row-span-2 col-span-2">
+    <Card className="group bg-gray-100 cursor-pointer row-span-2 col-span-2">
       <CardHeader>
         {item.new && (
           <span className="rounded-lg py-1 px-2 border-box text-xs bg-blue-500 text-white w-fit">
