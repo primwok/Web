@@ -548,7 +548,10 @@ const Page: React.FC<{
   active: boolean;
 }> = ({ data, active }) => {
   const type = data.type;
-  const gridColumns = type === "grid-simple" ? "grid-cols-3" : "grid-cols-4";
+  const gridColumns =
+    type === "grid-simple"
+      ? "grid-cols-2 md:grid-cols-3"
+      : "grid-cols-2 md:grid-cols-4";
   const gridRows = "grid-rows-2";
   const gridGap = "gap-4";
 
