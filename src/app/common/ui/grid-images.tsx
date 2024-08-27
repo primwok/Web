@@ -25,7 +25,7 @@ export interface IGridItem {
 export const SimpleImageCard: React.FC<{ item: IGridItem }> = ({ item }) => {
   return (
     <Card
-      className={`group bg-gray-100 cursor-pointer grid grid-rows-[2.5rem,10.5rem,7.5rem] rounded-xl shadow-none
+      className={`group bg-slate-100 cursor-pointer grid grid-rows-[2.5rem,10.5rem,7.5rem] rounded-2xl shadow-none
 			  ${
           item.type === "simple"
             ? "row-span-1 col-span-1 col-span-1"
@@ -96,8 +96,8 @@ export const MainImageCard1: React.FC<{
 }> = ({ item, border }) => {
   return (
     <Card
-      className="group bg-gray-100 cursor-pointer row-span-2 col-span-2
-		  grid grid-rows-7
+      className="group bg-slate-100 cursor-pointer row-span-2 col-span-2 shadow-none rounded-2xl
+		  grid grid-rows-[5rem,25rem,12rem]
 	  "
     >
       <CardHeader className="row-span-1">
@@ -108,21 +108,22 @@ export const MainImageCard1: React.FC<{
         )}
       </CardHeader>
       <CardContent
-        className={`row-span-4  ${border ? "border-b border-white" : ""}`}
+        className={`row-span-1  ${border ? "border-b border-white" : ""}`}
       >
         <div
-          className="image-container h-full w-full flex flex-col gap-4 justify-center items-center
+          className="image-container relative h-full w-full p-2 
 		  "
         >
           <Image
             src={item.image}
             alt={item.productName}
-            width={150}
-            height={150}
+            layout="fill"
+            objectFit="contain"
+            objectPosition="center"
           />
         </div>
       </CardContent>
-      <CardFooter className="row-span-2">
+      <CardFooter className="row-span-1">
         <div className="grid grid-rows-3 w-full items-center jutify-center ">
           <div className="title-container flex justify-center items-center">
             <h5 className="text-lg font-medium row-span-1">
