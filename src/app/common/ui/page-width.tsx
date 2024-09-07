@@ -22,7 +22,7 @@ export const PageWidth: React.FC<
   // Handle single child element
   const modifyElement = (element: ReactElement) => {
     return React.cloneElement(element, {
-      className: `max-w-[1440px] w-full h-auto mr-auto ml-auto ${
+      className: `max-w-[1440px] w-full  mr-auto ml-auto ${
         element.props.className || ""
       }`,
       // style: {

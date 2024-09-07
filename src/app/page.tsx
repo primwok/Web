@@ -100,7 +100,186 @@ export default function Home() {
         <ComboCarousel />
       </div>
       <div className="my-5">
-        <ContentOverlayCarousel />
+        <ContentOverlayCarousel
+          data={[
+            {
+              title: "Category 1",
+              type: "simple",
+              item: {
+                productName: "Item 1",
+                image:
+                  "https://images.unsplash.com/photo-1614624532983-4ce03382d63d?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                type: "simple",
+                new: true,
+                button: {
+                  title: "Shop Now",
+                  url: "#",
+                },
+                incentive: "Save up to 50%.",
+                offer: "Buy 1 get 1 free",
+              },
+            },
+            {
+              title: "Category 2",
+              type: "image-background",
+              item: {
+                productName: "Item 2",
+                image:
+                  "https://images.unsplash.com/photo-1512429234305-12fe5b0b0f07?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                type: "simple",
+                new: true,
+                button: {
+                  title: "Shop Now",
+                  url: "#",
+                },
+                incentive: "Save up to 50%.",
+                offer: "Buy 1 get 1 free",
+              },
+            },
+            {
+              title: "Category 3",
+              type: "simple",
+              item: {
+                productName: "Item 3",
+                image:
+                  "https://images.unsplash.com/photo-1546868871-08b8ebc35c09?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEzfHx8ZW58MHx8fHx8g",
+                type: "simple",
+                new: true,
+                button: {
+                  title: "Shop Now",
+                  url: "#",
+                },
+                incentive: "Save up to 50%.",
+                offer: "Buy 1 get 1 free",
+              },
+            },
+            {
+              title: "Category 4",
+              type: "image-background",
+              item: {
+                productName: "Item 4",
+                image:
+                  "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1926&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                type: "simple",
+
+                new: true,
+                button: {
+                  title: "Shop Now",
+                  url: "#",
+                },
+                incentive: "Save up to 50%.",
+                offer: "Buy 1 get 1 free",
+              },
+            },
+            {
+              title: "Category 5",
+              type: "simple",
+              item: {
+                productName: "Item 1",
+                image:
+                  "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                type: "simple",
+                new: true,
+                button: {
+                  title: "Shop Now",
+                  url: "#",
+                },
+                incentive: "Save up to 50%.",
+                offer: "Buy 1 get 1 free",
+              },
+            },
+          ]}
+        />
+        <ContentOverlayCarousel
+          data={[
+            {
+              title: "Category 1",
+              type: "simple",
+              item: {
+                productName: "Item 1",
+                image:
+                  "https://images.unsplash.com/photo-1614624532983-4ce03382d63d?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                type: "image-background",
+                new: true,
+                button: {
+                  title: "Shop Now",
+                  url: "#",
+                },
+                incentive: "Save up to 50%.",
+                offer: "Buy 1 get 1 free",
+              },
+            },
+            {
+              title: "Category 2",
+              type: "image-background",
+              item: {
+                productName: "Item 2",
+                image:
+                  "https://images.unsplash.com/photo-1512429234305-12fe5b0b0f07?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                type: "image-background",
+                new: true,
+                button: {
+                  title: "Shop Now",
+                  url: "#",
+                },
+                incentive: "Save up to 50%.",
+                offer: "Buy 1 get 1 free",
+              },
+            },
+            {
+              title: "Category 3",
+              type: "simple",
+              item: {
+                productName: "Item 3",
+                image:
+                  "https://images.unsplash.com/photo-1546868871-08b8ebc35c09?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEzfHx8ZW58MHx8fHx8g",
+                type: "image-background",
+                new: true,
+                button: {
+                  title: "Shop Now",
+                  url: "#",
+                },
+                incentive: "Save up to 50%.",
+                offer: "Buy 1 get 1 free",
+              },
+            },
+            {
+              title: "Category 4",
+              type: "image-background",
+              item: {
+                productName: "Item 4",
+                image:
+                  "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1926&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                type: "image-background",
+
+                new: true,
+                button: {
+                  title: "Shop Now",
+                  url: "#",
+                },
+                incentive: "Save up to 50%.",
+                offer: "Buy 1 get 1 free",
+              },
+            },
+            {
+              title: "Category 5",
+              type: "simple",
+              item: {
+                productName: "Item 1",
+                image:
+                  "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                type: "image-background",
+                new: true,
+                button: {
+                  title: "Shop Now",
+                  url: "#",
+                },
+                incentive: "Save up to 50%.",
+                offer: "Buy 1 get 1 free",
+              },
+            },
+          ]}
+        />
       </div>
       <CFooter />
     </div>

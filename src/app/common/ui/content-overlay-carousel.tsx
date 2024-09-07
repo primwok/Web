@@ -33,96 +33,98 @@ interface GridItem {
   offerImages?: string[];
 }
 
-const data: PageData[] = [
-  {
-    title: "Category 1",
-    type: "simple",
-    item: {
-      productName: "Item 1",
-      image:
-        "https://as2.ftcdn.net/v2/jpg/05/17/53/57/1000_F_517535712_q7f9QC9X6TQxWi6xYZZbMmw5cnLMr279.jpg",
-      type: "simple",
-      new: true,
-      button: {
-        title: "Shop Now",
-        url: "#",
-      },
-      incentive: "Save up to 50%.",
-      offer: "Buy 1 get 1 free",
-    },
-  },
-  {
-    title: "Category 2",
-    type: "image-background",
-    item: {
-      productName: "Item 2",
-      image:
-        "https://as2.ftcdn.net/v2/jpg/05/17/53/57/1000_F_517535712_q7f9QC9X6TQxWi6xYZZbMmw5cnLMr279.jpg",
-      type: "image-background",
-      new: true,
-      button: {
-        title: "Shop Now",
-        url: "#",
-      },
-      incentive: "Save up to 50%.",
-      offer: "Buy 1 get 1 free",
-    },
-  },
-  {
-    title: "Category 3",
-    type: "simple",
-    item: {
-      productName: "Item 3",
-      image:
-        "https://as2.ftcdn.net/v2/jpg/05/17/53/57/1000_F_517535712_q7f9QC9X6TQxWi6xYZZbMmw5cnLMr279.jpg",
-      type: "simple",
-      new: true,
-      button: {
-        title: "Shop Now",
-        url: "#",
-      },
-      incentive: "Save up to 50%.",
-      offer: "Buy 1 get 1 free",
-    },
-  },
-  {
-    title: "Category 4",
-    type: "image-background",
-    item: {
-      productName: "Item 4",
-      image:
-        "https://as2.ftcdn.net/v2/jpg/05/17/53/57/1000_F_517535712_q7f9QC9X6TQxWi6xYZZbMmw5cnLMr279.jpg",
-      type: "image-background",
+// const data: PageData[] = [
+//   {
+//     title: "Category 1",
+//     type: "simple",
+//     item: {
+//       productName: "Item 1",
+//       image:
+//         "https://images.unsplash.com/photo-1614624532983-4ce03382d63d?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+//       type: "simple",
+//       new: true,
+//       button: {
+//         title: "Shop Now",
+//         url: "#",
+//       },
+//       incentive: "Save up to 50%.",
+//       offer: "Buy 1 get 1 free",
+//     },
+//   },
+//   {
+//     title: "Category 2",
+//     type: "image-background",
+//     item: {
+//       productName: "Item 2",
+//       image:
+//         "https://images.unsplash.com/photo-1512429234305-12fe5b0b0f07?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+//       type: "image-background",
+//       new: true,
+//       button: {
+//         title: "Shop Now",
+//         url: "#",
+//       },
+//       incentive: "Save up to 50%.",
+//       offer: "Buy 1 get 1 free",
+//     },
+//   },
+//   {
+//     title: "Category 3",
+//     type: "simple",
+//     item: {
+//       productName: "Item 3",
+//       image:
+//         "https://images.unsplash.com/photo-1546868871-08b8ebc35c09?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEzfHx8ZW58MHx8fHx8g",
+//       type: "simple",
+//       new: true,
+//       button: {
+//         title: "Shop Now",
+//         url: "#",
+//       },
+//       incentive: "Save up to 50%.",
+//       offer: "Buy 1 get 1 free",
+//     },
+//   },
+//   {
+//     title: "Category 4",
+//     type: "image-background",
+//     item: {
+//       productName: "Item 4",
+//       image:
+//         "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1926&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+//       type: "image-background",
 
-      new: true,
-      button: {
-        title: "Shop Now",
-        url: "#",
-      },
-      incentive: "Save up to 50%.",
-      offer: "Buy 1 get 1 free",
-    },
-  },
-  {
-    title: "Category 5",
-    type: "simple",
-    item: {
-      productName: "Item 1",
-      image:
-        "https://as2.ftcdn.net/v2/jpg/05/17/53/57/1000_F_517535712_q7f9QC9X6TQxWi6xYZZbMmw5cnLMr279.jpg",
-      type: "simple",
-      new: true,
-      button: {
-        title: "Shop Now",
-        url: "#",
-      },
-      incentive: "Save up to 50%.",
-      offer: "Buy 1 get 1 free",
-    },
-  },
-];
+//       new: true,
+//       button: {
+//         title: "Shop Now",
+//         url: "#",
+//       },
+//       incentive: "Save up to 50%.",
+//       offer: "Buy 1 get 1 free",
+//     },
+//   },
+//   {
+//     title: "Category 5",
+//     type: "simple",
+//     item: {
+//       productName: "Item 1",
+//       image:
+//         "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+//       type: "simple",
+//       new: true,
+//       button: {
+//         title: "Shop Now",
+//         url: "#",
+//       },
+//       incentive: "Save up to 50%.",
+//       offer: "Buy 1 get 1 free",
+//     },
+//   },
+// ];
 
-export const ContentOverlayCarousel: React.FC = () => {
+export const ContentOverlayCarousel: React.FC<{
+  data: PageData[];
+}> = ({ data }) => {
   const [active, setActive] = React.useState(0);
   const controls = data.map((_, index) => (
     <div
@@ -130,8 +132,8 @@ export const ContentOverlayCarousel: React.FC = () => {
       onClick={() => {
         setActive(index);
       }}
-      className={`control cursor-pointer ${
-        active === index ? "text-blue-500" : "text-gray-500"
+      className={`control cursor-pointer font-medium w-fit text-nowrap px-3 py-4 ${
+        active === index ? "text-blue-500" : "text-black"
       }`}
     >
       {" "}
@@ -143,7 +145,7 @@ export const ContentOverlayCarousel: React.FC = () => {
   return (
     <PageWidth>
       <div
-        className={`h-[35vw] py-3 min-h-fit`}
+        className={`min-h-[40vw] py-3 `}
         style={{
           backgroundImage:
             data[active].item.type === "image-background"
@@ -159,8 +161,8 @@ export const ContentOverlayCarousel: React.FC = () => {
         />
         <div className="flex flex-col justify-between">
           <div
-            className="controls flex gap-4 overflow-x-scroll
-					items-center justify-center scrollbar-hide py-2
+            className="controls flex gap-8 overflow-x-scroll
+    items-center justify-start md:justify-center scrollbar-hide my-6 max-w-[90%] mx-auto
 				"
           >
             {controls}

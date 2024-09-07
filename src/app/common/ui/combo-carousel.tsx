@@ -513,8 +513,8 @@ export const ComboCarousel = () => {
       onClick={() => {
         setActive(index);
       }}
-      className={`control cursor-pointer font-medium ${
-        active === index ? "text-blue-500" : "text-black"
+      className={`control cursor-pointer font-medium w-fit text-nowrap px-3 py-4 ${
+        active === index ? "text-blue-500 shadow-lg " : "text-black"
       }`}
     >
       {" "}
@@ -526,7 +526,7 @@ export const ComboCarousel = () => {
       <div className="w-full h-full">
         <div
           className="controls flex gap-8 overflow-x-scroll
-			items-center justify-center scrollbar-hide my-6
+    items-center justify-start md:justify-center scrollbar-hide my-6 max-w-[90%] mx-auto
 		"
         >
           {controls}
