@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 // import { Icons } from "@/components/ui/icons"
-import { Search, ShoppingBag, User } from "lucide-react";
+import { Menu, Search, ShoppingBag, User } from "lucide-react";
 
 import {
   NavigationMenu,
@@ -17,6 +17,8 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { PageWidth } from "./page-width";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -59,13 +61,44 @@ const components: { title: string; href: string; description: string }[] = [
 export function CMainNavigationMenu() {
   return (
     <PageWidth>
-      <div className="flex items-center gap-4 py-3 w-full bg-white">
-        <Logo />
-        <div className="flex items-center justify-between w-full">
-          <NavigationMenuSection type="1" />
-          <NavigationMenuSection type="2" />
+      <header className="sticky top-0 flex items-center gap-4 py-4 w-full bg-white z-[10]">
+        <nav className="hidden xl:flex items-center gap-8 w-full">
+          <Logo />
+          <div className="flex justify-between items-center w-full">
+            <NavigationMenuSection type="1" />
+            <NavigationMenuSection type="2" />
+          </div>
+        </nav>
+        <div className="flex xl:hidden justify-between items-center px-2 w-full">
+          <Logo />
+
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button
+                variant="outline"
+                size="icon"
+                className="shrink-0 xl:hidden"
+              >
+                <Menu className="h-5 w-5" />
+                <span className="sr-only">Toggle navigation menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right">
+              <nav className="flex flex-col p-4 gap-3">
+                <Link href="#" className="">
+                  Dashboard
+                </Link>
+                <Link href="#" className="">
+                  Orders
+                </Link>
+                <Link href="#" className="">
+                  Products
+                </Link>
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
-      </div>
+      </header>
     </PageWidth>
   );
 }
@@ -99,7 +132,11 @@ ListItem.displayName = "ListItem";
 
 export const Logo = () => {
   return (
-    <Link href="/" passHref className="text-xl uppercase font-bold ">
+    <Link
+      href="/"
+      passHref
+      className="text-normal md:text-lg uppercase font-bold md:px-4 tracking-wider	"
+    >
       Primwok
     </Link>
   );
@@ -122,7 +159,9 @@ const NavigationMenuSection: React.FC<
         {type === "1" && (
           <>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+              <NavigationMenuTrigger className="font-bold">
+                Shop
+              </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                   <li className="row-span-3">
@@ -159,7 +198,9 @@ const NavigationMenuSection: React.FC<
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>Components</NavigationMenuTrigger>
+              <NavigationMenuTrigger className="font-bold">
+                Mobile
+              </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                   {components.map((component) => (
@@ -176,15 +217,19 @@ const NavigationMenuSection: React.FC<
             </NavigationMenuItem>
             <NavigationMenuItem>
               <Link href="/docs" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Documentation
+                <NavigationMenuLink
+                  className={`${navigationMenuTriggerStyle()}`}
+                >
+                  TV & Audio
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <Link href="/docs" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Documentation
+                <NavigationMenuLink
+                  className={`${navigationMenuTriggerStyle()}`}
+                >
+                  Accessories
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
