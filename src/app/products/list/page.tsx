@@ -1,12 +1,17 @@
+import { CFooter } from "@/app/common/ui/footer";
+import { CMainNavigationMenu } from "@/app/common/ui/main-navigation-menu";
+import { CNotificationBar } from "@/app/common/ui/notification-bar";
+import { SimpleCarousel } from "@/app/common/ui/simple-carousel";
 import ProductList from "@/app/feat/products/list";
 
 export default function ProductListPage() {
   return (
-    <div className="flex min-h-screen w-full flex-col">
-      <h1 className="text-3xl font-semibold text-gray-800 mb-4">
-        Product List
-      </h1>
+    <div className="flex flex-col min-h-screen relative">
+      <CNotificationBar content="This is a notification" type="info" />
+      <CMainNavigationMenu />
+      {/* <SimpleCarousel /> */}
       <ProductList />
+      <CFooter />
     </div>
   );
 }

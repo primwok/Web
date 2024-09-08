@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 // import { Icons } from "@/components/ui/icons"
-import { Menu, Search, ShoppingBag, User } from "lucide-react";
+import { Menu } from "lucide-react";
 
 import {
   NavigationMenu,
@@ -19,6 +19,9 @@ import {
 import { PageWidth } from "./page-width";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
+import { CartButton } from "@/app/feat/cart/cartButton";
+import { AccountButton } from "@/app/feat/auth/account-button";
+import { SearchOverlayComponent } from "@/app/feat/products/search-overlay";
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -61,7 +64,7 @@ const components: { title: string; href: string; description: string }[] = [
 export function CMainNavigationMenu() {
   return (
     <PageWidth>
-      <header className="sticky top-0 flex items-center gap-4 py-4 w-full bg-white z-[10]">
+      <header className="main-menu flex items-center gap-4 py-4 w-full bg-white z-[10] h-[4rem]">
         <nav className="hidden xl:flex items-center gap-8 w-full">
           <Logo />
           <div className="flex justify-between items-center w-full">
@@ -71,37 +74,38 @@ export function CMainNavigationMenu() {
         </nav>
         <div className="flex xl:hidden justify-between items-center px-2 w-full">
           <Logo />
-
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button
-                variant="outline"
-                size="icon"
-                className="shrink-0 xl:hidden"
-              >
-                <Menu className="h-5 w-5" />
-                <span className="sr-only">Toggle navigation menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right">
-              <nav className="flex flex-col p-4 gap-3">
-                <Link href="#" className="">
-                  Dashboard
-                </Link>
-                <Link href="#" className="">
-                  Orders
-                </Link>
-                <Link href="#" className="">
-                  Products
-                </Link>
-              </nav>
-            </SheetContent>
-          </Sheet>
+          <MobileSheetMenuContent />
         </div>
       </header>
     </PageWidth>
   );
 }
+
+export const MobileSheetMenuContent = () => {
+  return (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="outline" size="icon" className="shrink-0 xl:hidden">
+          <Menu className="h-5 w-5" />
+          <span className="sr-only">Toggle navigation menu</span>
+        </Button>
+      </SheetTrigger>
+      <SheetContent side="right">
+        <nav className="flex flex-col p-4 gap-3">
+          <Link href="#" className="">
+            Dashboard
+          </Link>
+          <Link href="#" className="">
+            Orders
+          </Link>
+          <Link href="#" className="">
+            Products
+          </Link>
+        </nav>
+      </SheetContent>
+    </Sheet>
+  );
+};
 
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
@@ -159,7 +163,7 @@ const NavigationMenuSection: React.FC<
         {type === "1" && (
           <>
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="font-bold">
+              <NavigationMenuTrigger className="font-semibold">
                 Shop
               </NavigationMenuTrigger>
               <NavigationMenuContent>
@@ -198,7 +202,7 @@ const NavigationMenuSection: React.FC<
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="font-bold">
+              <NavigationMenuTrigger className="font-semibold">
                 Mobile
               </NavigationMenuTrigger>
               <NavigationMenuContent>
@@ -218,7 +222,7 @@ const NavigationMenuSection: React.FC<
             <NavigationMenuItem>
               <Link href="/docs" legacyBehavior passHref>
                 <NavigationMenuLink
-                  className={`${navigationMenuTriggerStyle()}`}
+                  className={`${navigationMenuTriggerStyle()} font-semibold`}
                 >
                   TV & Audio
                 </NavigationMenuLink>
@@ -227,7 +231,7 @@ const NavigationMenuSection: React.FC<
             <NavigationMenuItem>
               <Link href="/docs" legacyBehavior passHref>
                 <NavigationMenuLink
-                  className={`${navigationMenuTriggerStyle()}`}
+                  className={`${navigationMenuTriggerStyle()} font-semibold`}
                 >
                   Accessories
                 </NavigationMenuLink>
@@ -238,7 +242,9 @@ const NavigationMenuSection: React.FC<
         {type === "2" && (
           <>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+              <NavigationMenuTrigger className="font-semibold">
+                Getting started
+              </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                   <li className="row-span-3">
@@ -275,7 +281,9 @@ const NavigationMenuSection: React.FC<
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>Components</NavigationMenuTrigger>
+              <NavigationMenuTrigger className="font-semibold">
+                Components
+              </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                   {components.map((component) => (
@@ -292,31 +300,27 @@ const NavigationMenuSection: React.FC<
             </NavigationMenuItem>
             <NavigationMenuItem>
               <Link href="/docs" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                <NavigationMenuLink
+                  className={`${navigationMenuTriggerStyle()} font-semibold`}
+                >
                   Documentation
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/docs" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                <SearchOverlayComponent />
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/cart" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  <Search className="h-5 w-5" />
+                  <CartButton />
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/docs" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  <ShoppingBag className="h-5 w-5" />
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/docs" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  <User className="h-5 w-5" />
-                </NavigationMenuLink>
-              </Link>
+              <AccountButton />
             </NavigationMenuItem>
           </>
         )}

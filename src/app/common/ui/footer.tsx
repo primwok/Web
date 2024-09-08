@@ -149,7 +149,7 @@ const columns = [
 
 export const CFooter = () => {
   return (
-    <div className="bg-black text-white mt-6">
+    <div className="bg-black text-white">
       <PageWidth>
         <footer className="px-6 py-12">
           <div className="grid grid-cols-12 gap-4">
