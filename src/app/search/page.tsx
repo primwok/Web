@@ -10,76 +10,76 @@ import { CText } from "../common/ui/text-block";
 
 import { CFooter } from "../common/ui/footer";
 import { CNotificationBar } from "../common/ui/notification-bar";
-import { CMainNavigationMenu } from "../common/ui/main-navigation-menu";
+import {
+  CMainNavigationMenu,
+  MobileSheetMenuContent,
+} from "../common/ui/main-navigation-menu";
 import { Button } from "@/components/ui/button";
-import { ChevronsUpDown, Plus, X } from "lucide-react";
-import React from "react";
+import { ChevronsUpDown, ListFilter, Plus, Search, X } from "lucide-react";
+import React, { useState } from "react";
 import { PaginationDemo } from "../common/ui/pagintaion";
-import { CInput } from "@/components/ui/custom/input";
 import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
+import { FilterHeaderComponent, FilterMenu } from "../feat/products/filter";
+import { useProductsQuery } from "../common/api/products/query";
+import { RegionContext, useRegions } from "../common/contexts/region.context";
+import numeral from "numeral";
+import { ProductRating } from "../common/ui/product-cards/rating";
 
 export const SearchPage = () => {
+  const { state } = useRegions() as RegionContext;
+  const { data, isLoading } = useProductsQuery({
+    region_id: state.region as string,
+  });
+  const products = data?.products;
+
   return (
-    <div>
+    <div className="flex flex-col min-h-screen relative">
       <CNotificationBar content="This is a notification" type="info" />
       <CMainNavigationMenu />
-      <PageWidth>
-        <div className="search-bar bg-white flex items-center justify-center py-6">
-          <Input
-            placeholder="Search for products"
-            // icon={<Plus />}
-            // iconPosition="left"
-            className="w-full"
-          />
-          <Button variant="ghost" size="sm" className="w-9 p-0">
-            <X className="h-4 w-4" />
-            <span className="sr-only">Clear</span>
-          </Button>
-        </div>
-      </PageWidth>
-      <div className="bg-gray-100 py-4">
+      <section className="bg-white py-5 border-box flex flex-col jsutify-center items-center px-3">
         <PageWidth>
-          <div className="filter-container flex flex-col gap-4">
-            <div className="filter-buttons">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center justify-between gap-4">
-                  {/* <h4 className="font-medium">FILTERS</h4>
-					<p className="font-xs">Clear All</p> */}
-                  <CText
-                    tag="h6"
-                    content="FILTERS"
-                    placement="left"
-                    type="text"
-                  />
-                  <CText
-                    tag="p"
-                    content="Clear All"
-                    placement="left"
-                    type="text"
-                  />
-                </div>
-                <CText tag="p" content="Sort by" placement="left" type="text" />
+          <div
+            className="search-bar bg-white flex gap-2 items-center justify-center border border-gray-500 group rounded-2xl
+            px-[1rem] md:w-[40vw] has-[:focus]:border-sky-500 
+            has-[:focus]:ring-ring has-[:focus]:ring-sky-200  has-[:focus]:ring-1 h-[3rem] mx-auto 
+        "
+          >
+            <Search className="w-5 h-5" />
+            <Separator orientation="vertical" />
+            <Input
+              placeholder="Search for products"
+              className="border-0 focus-visible:border-none focus-visible:shadow-none focus-visible:outline-none focus-visible:ring-none focus-visible:ring-0"
+            />
+            <Separator orientation="vertical" />
+            <Button variant="ghost" size="sm" className="w-9 p-0">
+              <X className="h-4 w-4" />
+              <span className="sr-only">Clear</span>
+            </Button>
+          </div>
+        </PageWidth>
+      </section>
+      <div className="bg-gray-100 flex flex-col gap-4 pb-[15rem]">
+        <FilterHeaderComponent />
+        <PageWidth>
+          <div className="content grid grid-cols-12 gap-4">
+            <div className="md:col-span-3 hidden md:flex  relative h-full">
+              <div className="sticky top-[4rem] h-fit w-full flex ">
+                <FilterMenu />
               </div>
             </div>
-            <div className="filter-grid grid grid-cols-12 gap-4">
-              <div className="hidden md:flex md:flex-col gap-2 md:col-span-3">
-                <FIlterItem />
-                <FIlterItem />
-                <FIlterItem />
-                <FIlterItem />
-              </div>
-              <div className="col-span-12 md:col-span-9 flex flex-col gap-3">
-                <GridItem />
-                <GridItem />
-                <GridItem />
-                <GridItem />
-                <GridItem />
-                <GridItem />
-                <GridItem />
-                <GridItem />
-                <div className="flex items-right justify-right w-full">
-                  <PaginationDemo />
-                </div>
+            <div className="col-span-12 md:col-span-9 flex flex-col gap-8">
+              <section className="flex flex-col gap-4 px-3 lg:px-0">
+                {isLoading && <span>Loading...</span>}
+                {products && !products.length && <span>No Products</span>}
+                {products &&
+                  products.length > 0 &&
+                  products?.map((product, key) => (
+                    <GridItem product={product} key={key} />
+                  ))}
+              </section>
+              <div className="flex w-full">
+                <PaginationDemo />
               </div>
             </div>
           </div>
@@ -92,55 +92,71 @@ export const SearchPage = () => {
 
 export default SearchPage;
 
-const FIlterItem = () => {
-  const [isOpen, setIsOpen] = React.useState(true);
-
-  return (
-    <div className="flex flex-col bg-white p-3 w-full">
-      <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-        <div className="flex items-center justify-between">
-          <CText tag="h6" content="Price" placement="left" type="text" />
-          <CollapsibleTrigger>
-            <Button variant="ghost" size="sm" className="w-9 p-0">
-              <ChevronsUpDown className="h-4 w-4" />
-              <span className="sr-only">Toggle</span>
-            </Button>
-          </CollapsibleTrigger>
-        </div>
-        <CollapsibleContent>
-          Yes. Free to use for personal and commercial projects. No attribution
-          required.
-        </CollapsibleContent>
-      </Collapsible>
-    </div>
-  );
-};
-
-const GridItem = () => {
+const GridItem: React.FC<{
+  product: any;
+}> = ({ product }) => {
+  if (!product) {
+    return null;
+  }
   return (
     <div className="product bg-white grid grid-cols-12 p-2">
-      <div className="col-span-3">
-        <Image
-          src="https://image-us.samsung.com/us/smartphones/galaxy-z-fold6/gallery/01-Q6-Navy-1600x1200.jpg?$default-400-jpg$"
-          alt="product"
-          width={200}
-          height={200}
-        />
-      </div>
-      <div className="col-span-9 p-2 flex flex-col gap-2 justify-center">
-        <h5>Product name</h5>
-        <div className="flex flex-col md:flex-row items-start md:justify-start gap-3 w-full">
-          <CText tag="h6" content="$18.44" placement="left" type="text" />
-          <CText tag="h6" content="In Stock" placement="left" type="text" />
-        </div>
-        <div className="hidden md:flex md:flex-row gap-3">
-          <CText tag="p" type="link" content="Learn more" placement="left" />
-          <CText tag="p" type="link" content="Buy now" placement="left" />
+      <div className="col-span-2">
+        <div className="h-full w-full relative">
+          <Image
+            src={product.thumbnail || "/no-image.png"}
+            alt="product"
+            layout="fill"
+            objectFit="contain"
+            objectPosition="center"
+          />
         </div>
       </div>
-      <div className="col-span-12 flex flex-col gap-2 items-center md:hidden">
-        <Button className="">Buy now</Button>
-        <CText tag="p" type="link" content="Learn more" placement="left" />
+      <div className="col-span-10 p-2 flex flex-col gap-2 justify-center">
+        <h6 className="text-lg font-semibold">{product.title}</h6>
+        <div className="prices flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-8 w-full">
+          <div className="flex flex-row gap-2 items-center">
+            <h6 className="text-base font-medium">
+              ${" "}
+              {numeral(product.variants.at(0)?.calculated_price).format(
+                "0,0.00"
+              ) || 0}
+            </h6>
+            <h6 className="line-through text-gray-500 text-sm px-[.4rem] py-0">
+              ${" "}
+              {numeral(product.variants.at(0)?.original_price).format(
+                "0,0.00"
+              ) || 0}
+            </h6>
+          </div>
+          <ProductRating
+            ratings={Array.from({ length: 5 }).map(
+              (_, item) => Math.floor(Math.random() * 5) + 1
+            )}
+          />
+        </div>
+
+        <div className="hidden md:flex md:flex-row items-center gap-[4rem] w-full px-[.2rem] py-[.8rem]">
+          <p className="max-h-[1.5rem] rounded-lg text-sky-700 text-sm font-medium uppercase underline underline-offset-2">
+            Compare
+          </p>
+          <Button
+            className="bg-sky-700 uppercase rounded-3xl px-[2rem] py-[1.3rem] font-semibold"
+            size="sm"
+          >
+            Buy now
+          </Button>
+        </div>
+      </div>
+      <div className="col-span-12 flex flex-col gap-3 items-center justify-center md:hidden my-[2rem]">
+        <Button
+          className="bg-sky-700 uppercase rounded-3xl px-[2rem] py-[1.3rem] font-semibold w-full"
+          size="sm"
+        >
+          Buy now
+        </Button>
+        <p className="max-h-[1.5rem] rounded-lg text-sky-700 text-sm font-medium uppercase underline underline-offset-2">
+          Compare
+        </p>
       </div>
     </div>
   );

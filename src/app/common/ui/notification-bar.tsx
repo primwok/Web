@@ -6,7 +6,7 @@ export const CNotificationBar: React.FC<{
 }> = ({ content, type }) => {
   const bgColor =
     type === "info"
-      ? "bg-sky-600"
+      ? "bg-black"
       : type === "warning"
       ? "bg-yellow-600"
       : "bg-red-600";

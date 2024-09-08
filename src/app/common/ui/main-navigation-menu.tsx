@@ -64,7 +64,7 @@ const components: { title: string; href: string; description: string }[] = [
 export function CMainNavigationMenu() {
   return (
     <PageWidth>
-      <header className="main-menu flex items-center gap-4 py-4 w-full bg-white z-[10] h-[4rem]">
+      <header className="main-menu flex items-center gap-4 py-4 w-full bg-white z-[10] h-[4rem] bg-red-200">
         <nav className="hidden xl:flex items-center gap-8 w-full">
           <Logo />
           <div className="flex justify-between items-center w-full">

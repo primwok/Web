@@ -32,7 +32,7 @@ export const ProductList = () => {
             <section>
               {isLoading && <span>Loading...</span>}
               {products && !products.length && <span>No Products</span>}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4  px-3 lg:px-0">
                 {products &&
                   products.length > 0 &&
                   products?.map((product, key) => (

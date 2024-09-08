@@ -33,7 +33,7 @@ export const FIlterItem = () => {
       <Collapsible open={isOpen} onOpenChange={setIsOpen}>
         <div className="flex items-center justify-between">
           {/* <CText tag="h6" content="Price" placement="left" type="text" /> */}
-          <h6 className="text-sm font-medium uppercase">Price</h6>
+          <h6 className="text-sm font-bold text-gray-900 uppercase">Price</h6>
           <CollapsibleTrigger>
             <Button variant="ghost" size="sm" className="w-9 p-0">
               {isOpen ? <MinusIcon /> : <PlusIcon />}
@@ -111,9 +111,20 @@ export const FilterHeaderComponent = () => {
               </SheetContent>
             </Sheet>
             {/*  large devices */}
-            <h4 className="font-medium text-sm hidden lg:block">FILTERS</h4>
-            <h4 className="font-medium text-sm hidden lg:block">SORT BY</h4>
-            <p className="font-xs text-sm hidden lg:block">Clear All</p>
+
+            <h4 className="font-bold text-sm  text-gray-800 hidden lg:block">
+              FILTERS
+            </h4>
+            <Separator
+              orientation="vertical"
+              className="h-[1rem] bg-gray-500"
+            />
+            <h4 className="font-medium text-sm  text-sky-800 hidden lg:block uppercase underline underline-offset-2">
+              SORT BY
+            </h4>
+            <p className="font-medium text-sm text-sky-800  hidden lg:block uppercase underline underline-offset-2">
+              Clear All
+            </p>
           </div>
           {isVisible === false && (
             <div className="flex flex-row gap-5 items-center">
