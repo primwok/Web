@@ -10,12 +10,7 @@ export const CNotificationBar: React.FC<{
       : type === "warning"
       ? "bg-yellow-600"
       : "bg-red-600";
-  const textColor =
-    type === "info"
-      ? "text-blue-600"
-      : type === "warning"
-      ? "text-yellow-600"
-      : "text-red-600";
+  const textColor = "text-white";
   return (
     // <PageWidth>
     <div
@@ -26,7 +21,7 @@ export const CNotificationBar: React.FC<{
         " w-full h-12 flex items-center justify-center p-2"
       }
     >
-      <p className="text-white text-sm font-bold">{content}</p>
+      <p className="text-sm font-medium">{content}</p>
     </div>
     // </PageWidth>
   );

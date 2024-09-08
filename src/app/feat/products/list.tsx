@@ -1,19 +1,17 @@
 "use client";
 
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { listProducts } from "@/app/api/products/action";
 import {
   RegionContext,
   useRegions,
 } from "@/app/common/contexts/region.context";
 import { useProductsQuery } from "@/app/api/products/query";
-import Image from "next/image";
-import Link from "next/link";
+import { PageWidth } from "@/app/common/ui/page-width";
+import { PaginationDemo } from "@/app/common/ui/pagintaion";
+import React from "react";
+import { ProductCard } from "@/app/common/ui/product-cards/product-card";
+import { FilterMenu, FilterHeaderComponent, FIlterItem } from "./filter";
 
 export const ProductList = () => {
-  // const { products, isLoading } = useProducts({
-  //   // category_id: ["cat_123"],
-  // });
   const { state } = useRegions() as RegionContext;
   const { data, isLoading } = useProductsQuery({
     region_id: state.region as string,
@@ -21,36 +19,34 @@ export const ProductList = () => {
   const products = data?.products;
 
   return (
-    <section>
-      {isLoading && <span>Loading...</span>}
-      {products && !products.length && <span>No Products</span>}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {products &&
-          products.length > 0 &&
-          products?.map((product) => (
-            <Link href={`/products/${product.id}`} key={product.id}>
-              <Card key={product.id}>
-                <CardContent>
-                  <Image
-                    width={200}
-                    height={200}
-                    src={
-                      product.thumbnail ? product.thumbnail : "/no-image.png"
-                    }
-                    alt={product.title || "Product Image"}
-                  />
-                </CardContent>
-                <CardFooter className="flex justify-between items-center">
-                  <div className="flex flex-col gap-2">
-                    <h6>{product.title}</h6>
-                    <h6>{product.variants.at(0)?.calculated_price_incl_tax}</h6>
-                  </div>
-                </CardFooter>
-              </Card>
-            </Link>
-          ))}
-      </div>
-    </section>
+    <div className="bg-slate-100 flex flex-col gap-4 pb-[15rem]">
+      <FilterHeaderComponent />
+      <PageWidth>
+        <div className="content grid grid-cols-12 gap-4">
+          <div className="md:col-span-3 hidden md:flex  relative h-full">
+            <div className="sticky top-[4rem] h-fit w-full flex ">
+              <FilterMenu />
+            </div>
+          </div>
+          <div className="col-span-12 md:col-span-9 flex flex-col gap-8">
+            <section>
+              {isLoading && <span>Loading...</span>}
+              {products && !products.length && <span>No Products</span>}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4  px-3 lg:px-0">
+                {products &&
+                  products.length > 0 &&
+                  products?.map((product, key) => (
+                    <ProductCard key={key} product={product} />
+                  ))}
+              </div>
+            </section>
+            <div className="flex w-full">
+              <PaginationDemo />
+            </div>
+          </div>
+        </div>
+      </PageWidth>
+    </div>
   );
 };
 
