@@ -1,3 +1,4 @@
+import { CFooter } from "@/app/common/ui/footer";
 import { CMainNavigationMenu } from "@/app/common/ui/main-navigation-menu";
 import { CNotificationBar } from "@/app/common/ui/notification-bar";
 import { Header } from "@/app/feat/menu-bars/header";
@@ -15,6 +16,7 @@ export default function ProducDetailPage({
       <CNotificationBar content="This is a notification" type="info" />
       <CMainNavigationMenu />
       <ProductDetail params={params} />
+      <CFooter />
     </div>
   );
 }

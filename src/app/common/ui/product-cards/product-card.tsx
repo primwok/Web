@@ -64,12 +64,12 @@ export const ProductCard: React.FC<{
                   "0,0.00"
                 ) || 0}
               </h6>
-              <h6 className="line-through text-gray-500 text-sm px-[.4rem]">
+              {/* <h6 className="line-through text-gray-500 text-sm px-[.4rem]">
                 ${" "}
                 {numeral(product.variants.at(0)?.original_price).format(
                   "0,0.00"
                 ) || 0}
-              </h6>
+              </h6> */}
             </div>
             <p className="text-orange-600 text-sm font-medium">
               Save{" "}
