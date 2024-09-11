@@ -1,8 +1,10 @@
+"use client";
 import {
   useAddShippingMethodMutation,
   useListShippingOptionsQuery,
 } from "@/app/api/checkout/query";
 import { useCart } from "@/app/common/contexts/cart.context";
+import { PageWidth } from "@/app/common/ui/page-width";
 import { CInput } from "@/components/ui/custom/input";
 import { CSelect } from "@/components/ui/custom/select";
 import { use, useEffect } from "react";
@@ -10,10 +12,12 @@ import { FormProvider, useForm } from "react-hook-form";
 
 export const CheckoutForms: React.FC = () => {
   return (
-    <div>
-      <DeliveryForm />
-      <ShippingOptions />
-    </div>
+    <PageWidth>
+      <div>
+        <DeliveryForm />
+        <ShippingOptions />
+      </div>
+    </PageWidth>
   );
 };
 

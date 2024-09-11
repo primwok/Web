@@ -149,7 +149,7 @@ const columns = [
 
 export const CFooter = () => {
   return (
-    <div className="bg-black text-white">
+    <div className="bg-gray-900 text-white">
       <PageWidth>
         <footer className="px-6 py-12">
           <div className="grid grid-cols-12 gap-4">
@@ -167,7 +167,7 @@ export const CFooter = () => {
                       {section.items.map((item, index) => (
                         <a
                           key={index}
-                          className="font-thin text-sm w-fit"
+                          className="font-normal text-sm w-fit text-white"
                           href={item.url}
                         >
                           {item.title}
