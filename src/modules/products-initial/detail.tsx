@@ -36,10 +36,10 @@ export const ProductDetail = ({
           <Separator />
         </div>
       </PageWidth>
-      <FloatingCartAction
+      {/* <FloatingCartAction
         product={data?.product}
         handleAddToCart={handleAddToCart}
-      />
+      /> */}
       <PageWidth>
         {isLoading && <span>Loading...</span>}
         <div className="grid grid-cols-12 md:gap-12 px-3 lg:px-0">
@@ -53,6 +53,7 @@ export const ProductDetail = ({
           </div>
           <div className="col-span-12 md:col-span-6">
             <div className="flex flex-col gap-6 p-2 lg:p-o">
+              {/* Product title rating and price */}
               <div className="flex flex-col gap-2">
                 <h1 className="text-xl font-bold">{data?.product.title}</h1>
                 <ProductRating
@@ -95,6 +96,7 @@ export const ProductDetail = ({
                 </div>
               </div>
               <Separator />
+              {/* options */}
               <div className="options flex flex-col gap-4">
                 {data?.product.options?.map((option) => (
                   <div key={option.id} className="flex flex-col gap-4">
@@ -118,6 +120,7 @@ export const ProductDetail = ({
                 ))}
               </div>
               <Separator />
+              {/* variants */}
               <div className="flex flex-col gap-4">
                 <h4 className="text-sm font-semibold">Variants</h4>
                 <div className="grid grid-cols-2 gap-3">
@@ -137,6 +140,7 @@ export const ProductDetail = ({
                 </div>
               </div>
               <Separator />
+              {/* description */}
               <div className="flex flex-col gap-4">
                 <h4 className="text-sm font-semibold">Description</h4>
                 <p className="text-sm text-gray-600">
@@ -147,25 +151,6 @@ export const ProductDetail = ({
           </div>
         </div>
       </PageWidth>
-      {/* {data ? (
-          <Card>
-            <CardContent>
-              <Image
-                src={data?.product.thumbnail ?? ""}
-                alt={data?.product.title ?? "image"}
-                width={300}
-                height={300}
-              />
-            </CardContent>
-            <CardFooter>
-              <h6>{data?.product.title}</h6>
-              <h6>{data?.product.variants.at(0)?.calculated_price_incl_tax}</h6>
-              <Button onClick={() => handleAddToCart()}>Buy</Button>
-            </CardFooter>
-          </Card>
-        ) : (
-          <span>No Product</span>
-        )} */}
     </div>
   );
 };
@@ -226,49 +211,3 @@ export function BreadcrumbDemo() {
     </Breadcrumb>
   );
 }
-
-const FloatingCartAction: React.FC<{
-  product: any;
-  handleAddToCart: () => void;
-}> = ({ product, handleAddToCart }) => {
-  const [isVisible, setIsVisible] = useState<null | boolean>(null);
-
-  useEffect(() => {
-    const target = document.querySelector(".cart-button");
-
-    if (target) {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          setIsVisible(entry.isIntersecting);
-        },
-        {
-          root: null, // Observes the viewport
-          rootMargin: "0px",
-          threshold: 0.1, // Trigger when 10% of the element is visible
-        }
-      );
-
-      observer.observe(target);
-
-      return () => {
-        if (target) {
-          observer.unobserve(target);
-        }
-      };
-    }
-  }, []);
-  return (
-    <PageWidth>
-      {/* <div className="flex relative bg-red-200  h-fit"> */}
-      <div
-        className={`floating-cart-action  ${
-          isVisible === false ? "" : "hidden"
-        }  p-4 sticky top-0 z-[10] bg-white shadow-md w-full flex items-center justify-between`}
-      >
-        <h4 className="text-base font-bold">{product?.title}</h4>
-        <Button onClick={() => handleAddToCart()}>Add To Cart</Button>
-      </div>
-      {/* </div> */}
-    </PageWidth>
-  );
-};

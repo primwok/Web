@@ -5,7 +5,8 @@ import {
 import { clx } from "@medusajs/ui";
 
 import { getProductPrice } from "@/lib/util/get-product-price";
-import { RegionInfo } from "types/global";
+import { RegionInfo } from "@/types/global";
+import numeral from "numeral";
 
 export default function ProductPrice({
   product,
@@ -29,37 +30,22 @@ export default function ProductPrice({
   }
 
   return (
-    <div className="flex flex-col text-ui-fg-base">
-      <span
-        className={clx("text-xl-semi", {
-          "text-ui-fg-interactive": selectedPrice.price_type === "sale",
-        })}
-      >
-        {!variant && "From "}
-        <span
-          data-testid="product-price"
-          data-value={selectedPrice.calculated_price_number}
-        >
+    <>
+      <div className="flex flex-col  items-center">
+        <h6 className="text-base font-medium">
           {selectedPrice.calculated_price}
-        </span>
-      </span>
+        </h6>
+        {selectedPrice.price_type === "sale" && (
+          <h6 className="line-through text-gray-500 text-sm px-[.4rem]">
+            {selectedPrice.original_price}
+          </h6>
+        )}
+      </div>
       {selectedPrice.price_type === "sale" && (
-        <>
-          <p>
-            <span className="text-ui-fg-subtle">Original: </span>
-            <span
-              className="line-through"
-              data-testid="original-product-price"
-              data-value={selectedPrice.original_price_number}
-            >
-              {selectedPrice.original_price}
-            </span>
-          </p>
-          <span className="text-ui-fg-interactive">
-            -{selectedPrice.percentage_diff}%
-          </span>
-        </>
+        <p className="text-orange-600 text-sm font-medium">
+          Save -{selectedPrice.percentage_diff}%
+        </p>
       )}
-    </div>
+    </>
   );
 }

@@ -1,4 +1,4 @@
-import { medusaClient } from "@/lib/client";
+import { medusaClient } from "@/lib/config";
 
 export interface ListProductsParams {
 	region_id: string;

@@ -119,7 +119,7 @@ const AddAddress = ({ region }: { region: Region }) => {
                 region={region}
                 name="country_code"
                 required
-                autoComplete="country"
+                // autoComplete="country"
                 data-testid="country-select"
               />
               <Input

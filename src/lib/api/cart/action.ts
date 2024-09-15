@@ -1,6 +1,6 @@
 "use server"
 
-import { medusaClient } from "@/lib/client"
+import { medusaClient } from "@/lib/config"
 
 export interface CartParams {
 	region_id: string

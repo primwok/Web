@@ -1,6 +1,6 @@
 "use server";
 
-import { medusaClient } from "@/lib/client";
+import { medusaClient } from "@/lib/config";
 
 export const listShippingOptions = async (cart_id: string) => {
 	try {

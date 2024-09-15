@@ -5,8 +5,12 @@ import { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
 import Back from "@/modules/common/icons/back";
 import FastDelivery from "@/modules/common/icons/fast-delivery";
 import Refresh from "@/modules/common/icons/refresh";
-
-import Accordion from "./accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 type ProductTabsProps = {
   product: PricedProduct;
@@ -26,16 +30,17 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
 
   return (
     <div className="w-full">
-      <Accordion type="multiple">
+      <Accordion type="single" collapsible className="w-full">
         {tabs.map((tab, i) => (
-          <Accordion.Item
+          <AccordionItem
             key={i}
-            title={tab.label}
-            headingSize="medium"
+            // title={tab.label}
+            // // headingSize="medium"
             value={tab.label}
           >
-            {tab.component}
-          </Accordion.Item>
+            <AccordionTrigger>{tab.label}</AccordionTrigger>
+            <AccordionContent>{tab.component}</AccordionContent>
+          </AccordionItem>
         ))}
       </Accordion>
     </div>

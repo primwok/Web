@@ -2,7 +2,6 @@
 
 import { Region } from "@medusajs/medusa";
 import { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
-import { Button } from "@medusajs/ui";
 import { isEqual } from "lodash";
 import { useParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -14,6 +13,11 @@ import OptionSelect from "@/modules/products/components/option-select";
 
 import MobileActions from "../mobile-actions";
 import ProductPrice from "../product-price";
+import { Separator } from "@/components/ui/separator";
+import { ProductRating } from "@/modules/common/components/product-cards/rating";
+import { Button } from "@/components/ui/button";
+import LocalizedClientLink from "@/modules/common/components/localized-client-link";
+import FloatingCartAction from "../floating-cart-action";
 
 type ProductActionsProps = {
   product: PricedProduct;
@@ -118,7 +122,7 @@ export default function ProductActions({
 
   const actionsRef = useRef<HTMLDivElement>(null);
 
-  const inView = useIntersection(actionsRef, "0px");
+  // const inView = useIntersection(actionsRef, "0px");
 
   // add the selected variant to the cart
   const handleAddToCart = async () => {
@@ -134,49 +138,78 @@ export default function ProductActions({
 
     setIsAdding(false);
   };
+  // console.log("reloading 1");
+  // console.log("variant", variant);
+  // console.log("inStock", inStock);
+  // console.log("disabled", disabled);
+  // console.log("isAdding", isAdding);
 
   return (
     <>
-      <div className="flex flex-col gap-y-2" ref={actionsRef}>
-        <div>
-          {product.variants.length > 1 && (
-            <div className="flex flex-col gap-y-4">
-              {(product.options || []).map((option) => {
-                return (
-                  <div key={option.id}>
-                    <OptionSelect
-                      option={option}
-                      current={options[option.id]}
-                      updateOption={updateOptions}
-                      title={option.title}
-                      data-testid="product-options"
-                      disabled={!!disabled || isAdding}
-                    />
-                  </div>
-                );
-              })}
-              <Divider />
-            </div>
+      <FloatingCartAction
+        product={product}
+        handleAddToCart={handleAddToCart}
+        variant={variant}
+        inStock={inStock}
+        isAdding={isAdding}
+        disabled={disabled}
+      />
+      {/* <div className="flex flex-col gap-y-2" ref={actionsRef}> */}
+      {/* Product title rating and price */}
+      <div className="flex flex-col gap-2">
+        {product.collection && (
+          <LocalizedClientLink
+            href={`/collections/${product.collection.handle}`}
+            className="font-medium text-sm text-sky-700 hover:text-sky-600"
+          >
+            {product.collection.title}
+          </LocalizedClientLink>
+        )}
+        <h1 className="text-xl font-bold">{product.title}</h1>
+        <ProductRating
+          ratings={Array.from({ length: 5 }).map(
+            (_, item) => Math.floor(Math.random() * 5) + 1
           )}
+        />
+        <div className="flex flex-row items-center justify-between w-full">
+          <ProductPrice product={product} variant={variant} region={region} />
+          <Button
+            onClick={handleAddToCart}
+            disabled={!inStock || !variant || !!disabled || isAdding}
+            // variant="primary"
+            className="cart-button w-fit"
+            // isLoading={isAdding}
+            data-testid="add-product-button"
+          >
+            {!variant
+              ? "Select options"
+              : !inStock
+              ? "Out of stock"
+              : "Add to cart"}
+          </Button>
         </div>
-
-        <ProductPrice product={product} variant={variant} region={region} />
-
-        <Button
-          onClick={handleAddToCart}
-          disabled={!inStock || !variant || !!disabled || isAdding}
-          variant="primary"
-          className="w-full h-10"
-          isLoading={isAdding}
-          data-testid="add-product-button"
-        >
-          {!variant
-            ? "Select variant"
-            : !inStock
-            ? "Out of stock"
-            : "Add to cart"}
-        </Button>
-        <MobileActions
+      </div>
+      <Separator />
+      {/* options */}
+      {product.variants.length > 1 && (
+        <div className="options flex flex-col gap-4">
+          {(product.options || []).map((option) => {
+            return (
+              <div key={option.id}>
+                <OptionSelect
+                  option={option}
+                  current={options[option.id]}
+                  updateOption={updateOptions}
+                  title={option.title}
+                  data-testid="product-options"
+                  disabled={!!disabled || isAdding}
+                />
+              </div>
+            );
+          })}
+        </div>
+      )}
+      {/* <MobileActions
           product={product}
           variant={variant}
           region={region}
@@ -187,8 +220,8 @@ export default function ProductActions({
           isAdding={isAdding}
           show={!inView}
           optionsDisabled={!!disabled || isAdding}
-        />
-      </div>
+        /> */}
+      {/* </div> */}
     </>
   );
 }
