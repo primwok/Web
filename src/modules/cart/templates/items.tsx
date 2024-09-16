@@ -1,8 +1,14 @@
 import { LineItem, Region } from "@medusajs/medusa";
-import { Heading, Table } from "@medusajs/ui";
 
 import Item from "@/modules/cart/components/item";
 import SkeletonLineItem from "@/modules/skeletons/components/skeleton-line-item";
+import {
+  Table,
+  TableBody,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 type ItemsTemplateProps = {
   items?: Omit<LineItem, "beforeInsert">[];
@@ -13,23 +19,19 @@ const ItemsTemplate = ({ items, region }: ItemsTemplateProps) => {
   return (
     <div>
       <div className="pb-3 flex items-center">
-        <Heading className="text-[2rem] leading-[2.75rem]">Cart</Heading>
+        <h2 className="text-[1.5rem] leading-[2.75rem]">Cart</h2>
       </div>
       <Table>
-        <Table.Header className="border-t-0">
-          <Table.Row className="text-ui-fg-subtle txt-medium-plus">
-            <Table.HeaderCell className="!pl-0">Item</Table.HeaderCell>
-            <Table.HeaderCell></Table.HeaderCell>
-            <Table.HeaderCell>Quantity</Table.HeaderCell>
-            <Table.HeaderCell className="hidden small:table-cell">
-              Price
-            </Table.HeaderCell>
-            <Table.HeaderCell className="!pr-0 text-right">
-              Total
-            </Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
+        <TableHeader className="border-t-0">
+          <TableRow className="text-ui-fg-subtle txt-medium-plus">
+            <TableHead className="!pl-0">Item</TableHead>
+            <TableHead></TableHead>
+            <TableHead>Quantity</TableHead>
+            <TableHead className="hidden sm:table-cell">Price</TableHead>
+            <TableHead className="!pr-0 text-right">Total</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
           {items && region
             ? items
                 .sort((a, b) => {
@@ -41,7 +43,7 @@ const ItemsTemplate = ({ items, region }: ItemsTemplateProps) => {
             : Array.from(Array(5).keys()).map((i) => {
                 return <SkeletonLineItem key={i} />;
               })}
-        </Table.Body>
+        </TableBody>
       </Table>
     </div>
   );

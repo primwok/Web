@@ -18,7 +18,7 @@ const fetchCart = async () => {
     return notFound();
   }
 
-  const cart = await getCart(cartId).then(({ data }) => data?.cart);
+  const cart = await getCart(cartId).then(({ data }: any) => data?.cart);
 
   if (cart?.items.length) {
     const enrichedItems = await enrichLineItems(cart?.items, cart?.region_id);
@@ -30,6 +30,7 @@ const fetchCart = async () => {
 
 export default async function Checkout() {
   const cart = await fetchCart();
+  console.log("cart", cart);
 
   if (!cart) {
     return notFound();

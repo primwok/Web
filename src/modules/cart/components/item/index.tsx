@@ -53,7 +53,7 @@ const Item = ({ item, region, type = "full" }: ItemProps) => {
           href={`/products/${handle}`}
           className={cn("flex", {
             "w-16": type === "preview",
-            "small:w-24 w-12": type === "full",
+            "sm:w-24 w-12": type === "full",
           })}
         >
           <Thumbnail thumbnail={item.thumbnail} size="square" />
@@ -61,10 +61,7 @@ const Item = ({ item, region, type = "full" }: ItemProps) => {
       </TableCell>
 
       <TableCell className="text-left">
-        <h2
-          className="txt-medium-plus text-ui-fg-base"
-          data-testid="product-title"
-        >
+        <h2 className="font-medium text-sm" data-testid="product-title">
           {item.title}
         </h2>
         <LineItemOptions variant={item.variant} data-testid="product-variant" />
@@ -103,7 +100,7 @@ const Item = ({ item, region, type = "full" }: ItemProps) => {
       )}
 
       {type === "full" && (
-        <TableCell className="hidden small:table-cell">
+        <TableCell className="hidden sm:table-cell">
           <LineItemUnitPrice item={item} region={region} style="tight" />
         </TableCell>
       )}

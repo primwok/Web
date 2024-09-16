@@ -3,7 +3,7 @@ import { LineItem, Region } from "@medusajs/medusa";
 import { clx } from "@medusajs/ui";
 
 import { getPercentageDiff } from "@/lib/util/get-precentage-diff";
-import { CalculatedVariant } from "types/medusa";
+import { CalculatedVariant } from "@/types/medusa";
 
 type LineItemUnitPriceProps = {
   item: Omit<LineItem, "beforeInsert">;

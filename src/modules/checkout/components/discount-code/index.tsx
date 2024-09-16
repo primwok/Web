@@ -12,7 +12,11 @@ import {
 import { formatAmount } from "@/lib/util/prices";
 import { InfoIcon, Trash } from "lucide-react";
 import { Label } from "@/components/ui/label";
-import { Tooltip } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
@@ -59,10 +63,10 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
       <div className="txt-medium">
         {gift_cards.length > 0 && (
           <div className="flex flex-col mb-4">
-            <h2 className="txt-medium">Gift card(s) applied:</h2>
+            <h2 className="text-sm font-medium">Gift card(s) applied:</h2>
             {gift_cards?.map((gc) => (
               <div
-                className="flex items-center justify-between txt-small-plus"
+                className="flex items-center justify-between text-sm"
                 key={gc.id}
                 data-testid="gift-card"
               >
@@ -99,7 +103,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
         {appliedDiscount ? (
           <div className="w-full flex items-center">
             <div className="flex flex-col w-full">
-              <h2 className="txt-medium">Discount applied:</h2>
+              <h2 className="font-medium text-sm">Discount applied:</h2>
               <div
                 className="flex items-center justify-between w-full max-w-full"
                 data-testid="discount-row"
@@ -136,19 +140,23 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 type="button"
-                className="txt-medium text-ui-fg-interactive hover:text-ui-fg-interactive-hover"
+                className="font-medium text-sky-600 hover:text-sky-700"
                 data-testid="add-discount-button"
               >
                 Add gift card or discount code
               </button>
               <Tooltip>
-                You can add multiple gift cards, but only one discount code.
-                <InfoIcon color="var(--fg-muted)" />
+                <TooltipTrigger asChild>
+                  <InfoIcon className="text-gray-500 cursor-pointer" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  You can add multiple gift cards, but only one discount code.
+                </TooltipContent>
               </Tooltip>
             </Label>
             {isOpen && (
               <>
-                <div className="flex w-full gap-x-2 items-center">
+                <div className="flex flex-row w-full gap-x-2 items-end my-3">
                   <div className="flex flex-col gap-2">
                     <Label className="txt-small-plus">
                       Gift card or discount code
