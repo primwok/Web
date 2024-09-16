@@ -12,6 +12,7 @@ type PaymentContainerProps = {
   selectedPaymentOptionId: string | null;
   disabled?: boolean;
   paymentInfoMap: Record<string, { title: string; icon: JSX.Element }>;
+  handleChange: (providerId: string) => void;
 };
 
 const PaymentContainer: React.FC<PaymentContainerProps> = ({
@@ -19,6 +20,7 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
   selectedPaymentOptionId,
   paymentInfoMap,
   disabled = false,
+  handleChange,
 }) => {
   const isDevelopment = process.env.NODE_ENV === "development";
 
@@ -27,12 +29,13 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
       <div
         key={paymentSession.id}
         className={cn(
-          "flex flex-col gap-y-2 text-small-regular cursor-pointer py-4 border rounded-rounded px-8 mb-2 hover:shadow-borders-interactive-with-active",
+          "flex flex-col gap-y-2 text-small-regular cursor-pointer py-4 border rounded-rounded px-8 mb-2 hover:bg-sky-100",
           {
-            "border-ui-border-interactive":
+            "border border-sky-500":
               selectedPaymentOptionId === paymentSession.provider_id,
           }
         )}
+        onClick={() => handleChange(paymentSession.provider_id)}
       >
         <div className="flex items-center justify-between ">
           <div className="flex items-center gap-x-4">
@@ -41,7 +44,7 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
               value={paymentSession.provider_id}
               checked={selectedPaymentOptionId === paymentSession.provider_id}
             />
-            <p className="text-base-regular">
+            <p className="text-base-regular text-sm">
               {paymentInfoMap[paymentSession.provider_id]?.title ||
                 paymentSession.provider_id}
             </p>
@@ -57,7 +60,7 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
               )} */}
 
             {paymentSession.provider_id === "manual" && isDevelopment && (
-              <PaymentTest className="hidden small:block" />
+              <PaymentTest className="hidden sm:block" />
             )}
           </div>
           <span className="justify-self-end text-ui-fg-base">
@@ -65,7 +68,7 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
           </span>
         </div>
         {paymentSession.provider_id === "manual" && isDevelopment && (
-          <PaymentTest className="small:hidden text-[10px]" />
+          <PaymentTest className="sm:hidden text-[10px]" />
         )}
       </div>
     </>

@@ -79,11 +79,11 @@ const Payment = ({
   }, [isOpen]);
 
   return (
-    <div className="bg-white">
+    <div className="bg-white p-2">
       <div className="flex flex-row items-center justify-between mb-6">
         <div
           className={cn(
-            "flex flex-row text-3xl-regular gap-x-2 items-baseline",
+            "flex flex-row text-3xl-regular gap-x-2 items-center font-medium ",
             {
               "opacity-50 pointer-events-none select-none":
                 !isOpen && !paymentReady,
@@ -91,12 +91,14 @@ const Payment = ({
           )}
         >
           Payment
-          {!isOpen && paymentReady && <CheckCircle />}
+          {!isOpen && paymentReady && (
+            <CheckCircle className="h-[1rem] text-sky-500" />
+          )}
         </div>
         {!isOpen && paymentReady && (
           <button
             onClick={handleEdit}
-            className="text-ui-fg-interactive hover:text-ui-fg-interactive-hover"
+            className="text-sm font-medium text-ui-primary underline hover:underline hover:text-sky-500"
             data-testid="edit-payment-button"
           >
             Edit
@@ -123,17 +125,18 @@ const Payment = ({
                       selectedPaymentOptionId={
                         cart.payment_session?.provider_id || null
                       }
+                      handleChange={handleChange}
                     />
                   );
                 })}
             </RadioGroup>
           ) : paidByGiftcard ? (
             <div className="flex flex-col w-1/3">
-              <p className="txt-medium-plus text-ui-fg-base mb-1">
+              <p className="font-medium text-sm text-sky-600 mb-1">
                 Payment method
               </p>
               <p
-                className="txt-medium text-ui-fg-subtle"
+                className="font-medium text-sm"
                 data-testid="payment-method-summary"
               >
                 Gift card
@@ -153,7 +156,7 @@ const Payment = ({
 
           <Button
             size="default"
-            className="mt-6"
+            className="mt-6 bg-sky-600"
             onClick={handleSubmit}
             disabled={!cart?.payment_session && !paidByGiftcard}
             data-testid="submit-payment-button"
@@ -166,11 +169,11 @@ const Payment = ({
           {cart && paymentReady && cart.payment_session ? (
             <div className="flex items-start gap-x-1 w-full">
               <div className="flex flex-col w-1/3">
-                <p className="txt-medium-plus text-ui-fg-base mb-1">
+                <p className="font-medium text-sm text-sky-600">
                   Payment method
                 </p>
                 <p
-                  className="txt-medium text-ui-fg-subtle"
+                  className="text-gray-500 text-sm"
                   data-testid="payment-method-summary"
                 >
                   {paymentInfoMap[cart.payment_session.provider_id]?.title ||
@@ -178,7 +181,7 @@ const Payment = ({
                 </p>
               </div>
               <div className="flex flex-col w-1/3">
-                <p className="txt-medium-plus text-ui-fg-base mb-1">
+                <p className="font-medium text-sm text-sky-600">
                   Payment details
                 </p>
                 <div
@@ -187,10 +190,10 @@ const Payment = ({
                 >
                   <div className="flex items-center h-7 w-fit p-2 bg-ui-button-neutral-hover">
                     {paymentInfoMap[cart.payment_session.provider_id]?.icon || (
-                      <CreditCard />
+                      <CreditCard className="h-2" />
                     )}
                   </div>
-                  <p>
+                  <p className="text-sm text-ui-fg-subtle">
                     {cart.payment_session.provider_id === "stripe" && cardBrand
                       ? cardBrand
                       : "Another step will appear"}
@@ -200,9 +203,7 @@ const Payment = ({
             </div>
           ) : paidByGiftcard ? (
             <div className="flex flex-col w-1/3">
-              <p className="txt-medium-plus text-ui-fg-base mb-1">
-                Payment method
-              </p>
+              <p className="font-medium text-sm text-sky-600">Payment method</p>
               <p
                 className="txt-medium text-ui-fg-subtle"
                 data-testid="payment-method-summary"

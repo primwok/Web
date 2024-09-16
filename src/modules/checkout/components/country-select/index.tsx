@@ -1,8 +1,15 @@
 import { forwardRef, useImperativeHandle, useMemo, useRef } from "react";
 
 import { Region } from "@medusajs/medusa";
-import { Select, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { SelectContent, SelectGroup, SelectItem } from "@radix-ui/react-select";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const CountrySelect = forwardRef<
   HTMLSelectElement,
@@ -44,11 +51,12 @@ const CountrySelect = forwardRef<
       defaultValue={defaultValue}
       {...props}
     >
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger>
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
+          <SelectLabel>{placeholder}</SelectLabel>
           {countryOptions.map(({ value, label }, index) => (
             <SelectItem key={index} value={value}>
               {label}

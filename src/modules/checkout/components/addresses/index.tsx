@@ -46,16 +46,16 @@ const Addresses = ({
   const [message, formAction] = useFormState(setAddresses, null);
 
   return (
-    <div className="bg-white">
+    <div className="bg-white p-2">
       <div className="flex flex-row items-center justify-between mb-6">
-        <h2 className="flex flex-row text-3xl-regular gap-x-2 items-baseline">
+        <h2 className="flex flex-row text-3xl-regular gap-x-2 items-center font-medium">
           Shipping Address
-          {!isOpen && <CheckCircle />}
+          {!isOpen && <CheckCircle className="h-[1rem] text-sky-500" />}
         </h2>
         {!isOpen && cart?.shipping_address && (
           <button
             onClick={handleEdit}
-            className="text-ui-fg-interactive hover:text-ui-fg-interactive-hover"
+            className="text-sm font-medium text-ui-primary underline hover:underline hover:text-sky-500"
             data-testid="edit-address-button"
           >
             Edit
@@ -75,14 +75,17 @@ const Addresses = ({
 
             {!sameAsSBilling && (
               <div>
-                <h2 className="text-3xl-regular gap-x-4 pb-6 pt-8">
+                <h2 className="text-3xl-regular gap-x-4 pb-6 pt-8 font-medium">
                   Billing address
                 </h2>
 
                 <BillingAddress cart={cart} countryCode={countryCode} />
               </div>
             )}
-            <Button className="mt-6" data-testid="submit-address-button">
+            <Button
+              className="mt-6 bg-sky-600"
+              data-testid="submit-address-button"
+            >
               Continue to delivery
             </Button>
             <ErrorMessage error={message} data-testid="address-error-message" />
@@ -90,7 +93,7 @@ const Addresses = ({
         </form>
       ) : (
         <div>
-          <div className="text-small-regular">
+          <div className="text-sm">
             {cart && cart.shipping_address ? (
               <div className="flex items-start gap-x-8">
                 <div className="flex items-start gap-x-1 w-full">
@@ -98,7 +101,7 @@ const Addresses = ({
                     className="flex flex-col w-1/3"
                     data-testid="shipping-address-summary"
                   >
-                    <h2 className="txt-medium-plus text-ui-fg-base mb-1">
+                    <h2 className="text-sky-500 text-ui-fg-base mb-1">
                       Shipping Address
                     </h2>
                     <p className="txt-medium text-ui-fg-subtle">
@@ -122,7 +125,7 @@ const Addresses = ({
                     className="flex flex-col w-1/3 "
                     data-testid="shipping-contact-summary"
                   >
-                    <p className="txt-medium-plus text-ui-fg-base mb-1">
+                    <p className="text-sky-500 txt-medium-plus text-ui-fg-base mb-1">
                       Contact
                     </p>
                     <p className="txt-medium text-ui-fg-subtle">
@@ -135,7 +138,7 @@ const Addresses = ({
                     className="flex flex-col w-1/3"
                     data-testid="billing-address-summary"
                   >
-                    <h2 className="txt-medium-plus text-ui-fg-base mb-1">
+                    <h2 className="text-sky-500 txt-medium-plus text-ui-fg-base mb-1">
                       Billing Address
                     </h2>
 

@@ -19,9 +19,9 @@ const CheckoutSummary = async () => {
   }
 
   return (
-    <div className="sticky top-0 flex flex-col-reverse small:flex-col gap-y-8 py-8 small:py-0 ">
+    <div className="sticky top-0 flex flex-col-reverse sm:flex-col gap-y-8 py-8 sm:py-0 ">
       <div className="w-full bg-white flex flex-col">
-        <Separator className="my-6 small:hidden" />
+        <Separator className="my-6 sm:hidden" />
         <div className="flex flex-row text-3xl-regular items-baseline">
           In your Cart
         </div>

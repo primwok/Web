@@ -1,7 +1,6 @@
 "use client";
 
 import { Cart, PaymentSession } from "@medusajs/medusa";
-import { Button } from "@medusajs/ui";
 import { OnApproveActions, OnApproveData } from "@paypal/paypal-js";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { useElements, useStripe } from "@stripe/react-stripe-js";
@@ -9,6 +8,7 @@ import { placeOrder } from "@/modules/checkout/actions";
 import React, { useState } from "react";
 import ErrorMessage from "../error-message";
 import Spinner from "@/modules/common/icons/spinner";
+import { Button } from "@/components/ui/button";
 
 type PaymentButtonProps = {
   cart: Omit<Cart, "refundable_amount" | "refunded_total">;
@@ -59,7 +59,11 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
         />
       );
     default:
-      return <Button disabled>Select a payment method</Button>;
+      return (
+        <Button className="bg-sky-600" disabled>
+          Select a payment method
+        </Button>
+      );
   }
 };
 
@@ -74,10 +78,11 @@ const GiftCardPaymentButton = () => {
   return (
     <Button
       onClick={handleOrder}
-      isLoading={submitting}
+      // isLoading={submitting}
       data-testid="submit-order-button"
+      className="bg-sky-600"
     >
-      Place order
+      {submitting ? "Placing order..." : "Place order"}
     </Button>
   );
 };
@@ -170,11 +175,12 @@ const StripePaymentButton = ({
       <Button
         disabled={disabled || notReady}
         onClick={handlePayment}
-        size="large"
-        isLoading={submitting}
+        // size="large"
+        // isLoading={submitting}
         data-testid={dataTestId}
+        className="bg-sky-600"
       >
-        Place order
+        {submitting ? "Placing order..." : "Place order"}
       </Button>
       <ErrorMessage
         error={errorMessage}
@@ -270,12 +276,13 @@ const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
     <>
       <Button
         disabled={notReady}
-        isLoading={submitting}
+        // isLoading={submitting}
         onClick={handlePayment}
-        size="large"
+        // size="large"
         data-testid="submit-order-button"
+        className="bg-sky-600"
       >
-        Place order
+        {submitting ? "Placing order..." : "Place order"}
       </Button>
       <ErrorMessage
         error={errorMessage}

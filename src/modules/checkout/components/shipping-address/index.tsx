@@ -161,6 +161,7 @@ const ShippingAddress = ({
             onChange={handleChange}
             required
             data-testid="shipping-country-select"
+            placeholder="Country"
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -179,7 +180,7 @@ const ShippingAddress = ({
           <Checkbox
             name="same_as_billing"
             checked={checked}
-            onChange={onChange}
+            onClick={onChange}
             data-testid="billing-address-checkbox"
           />
           <Label htmlFor="terms">

@@ -62,11 +62,11 @@ const Shipping: React.FC<ShippingProps> = ({
   }, [isOpen]);
 
   return (
-    <div className="bg-white">
+    <div className="bg-white p-2">
       <div className="flex flex-row items-center justify-between mb-6">
         <h2
           className={cn(
-            "flex flex-row text-3xl-regular gap-x-2 items-baseline",
+            "flex flex-row text-3xl-regular gap-x-2 items-center font-medium ",
             {
               "opacity-50 pointer-events-none select-none":
                 !isOpen && cart.shipping_methods.length === 0,
@@ -74,7 +74,9 @@ const Shipping: React.FC<ShippingProps> = ({
           )}
         >
           Delivery
-          {!isOpen && cart.shipping_methods.length > 0 && <CheckCircle />}
+          {!isOpen && cart.shipping_methods.length > 0 && (
+            <CheckCircle className="h-[1rem] text-sky-500" />
+          )}
         </h2>
         {!isOpen &&
           cart?.shipping_address &&
@@ -82,7 +84,7 @@ const Shipping: React.FC<ShippingProps> = ({
           cart?.email && (
             <button
               onClick={handleEdit}
-              className="text-ui-fg-interactive hover:text-ui-fg-interactive-hover"
+              className="text-sm font-medium text-ui-primary underline hover:underline hover:text-sky-500"
               data-testid="edit-delivery-button"
             >
               Edit
@@ -94,7 +96,7 @@ const Shipping: React.FC<ShippingProps> = ({
           <div className="pb-8">
             <RadioGroup
               defaultValue={cart.shipping_methods[0]?.shipping_option_id}
-              onValueChange={(value) => handleChange(value)}
+              // onValueChange={(value) => handleChange(value)}
             >
               {availableShippingMethods ? (
                 availableShippingMethods.map((option) => {
@@ -104,13 +106,14 @@ const Shipping: React.FC<ShippingProps> = ({
                       // value={option.id}
                       data-testid="delivery-option-radio"
                       className={cn(
-                        "flex items-center justify-between text-small-regular cursor-pointer py-4 border rounded-rounded px-8 mb-2 hover:shadow-borders-interactive-with-active",
+                        "flex items-center justify-between text-sm cursor-pointer py-4 border rounded-rounded px-8 mb-2 hover:bg-sky-100",
                         {
-                          "border-ui-border-interactive":
+                          "border border-sky-500":
                             option.id ===
                             cart.shipping_methods[0]?.shipping_option_id,
                         }
                       )}
+                      onClick={() => handleChange(option.id as string)}
                     >
                       <div className="flex items-center gap-x-4">
                         <RadioGroupItem
@@ -148,9 +151,8 @@ const Shipping: React.FC<ShippingProps> = ({
 
           <Button
             size="default"
-            className="mt-6"
+            className="mt-6 bg-sky-600"
             onClick={handleSubmit}
-            // isLoading={isLoading}
             disabled={!cart.shipping_methods[0]}
             data-testid="submit-delivery-option-button"
           >
@@ -162,8 +164,8 @@ const Shipping: React.FC<ShippingProps> = ({
           <div className="text-small-regular">
             {cart && cart.shipping_methods.length > 0 && (
               <div className="flex flex-col w-1/3">
-                <p className="txt-medium-plus text-ui-fg-base mb-1">Method</p>
-                <p className="txt-medium text-ui-fg-subtle">
+                <p className="font-medium text-sky-600 text-sm mb-1">Method</p>
+                <p className="text-sm text-gray-500">
                   {cart.shipping_methods[0].shipping_option.name} (
                   {formatAmount({
                     amount: cart.shipping_methods[0].price,
