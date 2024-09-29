@@ -82,8 +82,8 @@ const CartDropdown = ({
     <HoverCard>
       <HoverCardTrigger asChild>
         <Link href="/cart" passHref data-testid="nav-cart-link">
-          <div className="relative ml-auto mr-2 md:mr-0">
-            <span className="absolute -top-2 -right-2 bg-primary text-white text-xs font-semibold rounded-full px-2">
+          <div className="relative ml-auto mr-2 md:mr-0 pr-4">
+            <span className="absolute -top-2 left-2 bg-primary text-white text-xs font-semibold rounded-full px-2">
               {totalItems}
             </span>
 
@@ -92,7 +92,7 @@ const CartDropdown = ({
         </Link>
       </HoverCardTrigger>
 
-      <HoverCardContent className="w-[30rem]">
+      <HoverCardContent className="hidden md:block w-[30rem]">
         <div
           // static
           className="w-full flex flex-col "

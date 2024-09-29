@@ -21,6 +21,7 @@ import { AccountButton } from "@/modules/auth/account-button";
 import { SearchOverlayComponent } from "@/modules/products-initial/search-overlay";
 import { Logo } from "./logo";
 import CartButton from "@/modules/layout/components/cart-button";
+import { ResponsiveSearchBox } from "@/modules/search/components/responsive-search-box";
 
 // const components: { title: string; href: string; description: string }[] = [
 //   {
@@ -63,16 +64,27 @@ import CartButton from "@/modules/layout/components/cart-button";
 export function CMainNavigationMenu() {
   return (
     <PageWidth>
-      <header className="main-menu flex items-center gap-4 py-4 w-full bg-white z-[10] h-[4rem] bg-red-200">
+      <header className="main-menu flex items-center gap-4 py-4 w-full bg-white z-[10] h-[rem] bg-red-200">
         <nav className="hidden xl:flex items-center gap-8 w-full">
           <Logo />
-          <div className="flex justify-end items-center w-full">
-            <CartButton />
+          <div className="flex justify-between items-center w-full">
+            <ResponsiveSearchBox screenSize="large" />
+            <div className="flex justify-end items-center gap-2 w-fit">
+              <AccountButton />
+              <CartButton />
+            </div>
           </div>
         </nav>
-        <div className="flex xl:hidden justify-between items-center px-2 w-full">
-          <Logo />
-          <MobileSheetMenuContent />
+        <div className="flex flex-col gap-[1rem] xl:hidden justify-between items-center px-2 w-full">
+          <div className="upper-section flex justify-between gap-[2rem] items-center w-full">
+            <MobileSheetMenuContent />
+            <Logo />
+            <div className="flex justify-end items-center gap-2 w-full">
+              <AccountButton />
+              <CartButton />
+            </div>
+          </div>
+          <ResponsiveSearchBox screenSize="small" />
         </div>
       </header>
     </PageWidth>

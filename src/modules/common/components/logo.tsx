@@ -12,7 +12,7 @@ export const Logo = () => {
     <Link
       href="/"
       passHref
-      className={`text-normal md:text-xl uppercase  md:px-4 tracking-wider
+      className={`text-lg md:text-xl uppercase  md:px-4 tracking-wider
 		${squadaOne.className}
 			`}
     >

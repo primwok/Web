@@ -1,4 +1,3 @@
-"use client";
 import {
   Collapsible,
   CollapsibleContent,
@@ -33,17 +32,17 @@ import numeral from "numeral";
 import { ProductRating } from "../../../../modules/common/components/product-cards/rating";
 import { useProductsQuery } from "@/lib/api/products/query";
 
-export const SearchPage = () => {
-  const { state } = useRegions() as RegionContext;
-  const { data, isLoading } = useProductsQuery({
-    region_id: state.region as string,
-  });
-  const products = data?.products;
+const SearchPage = () => {
+  // const { state } = useRegions() as RegionContext;
+  // const { data, isLoading } = useProductsQuery({
+  //   region_id: state.region as string,
+  // });
+  // const products = data?.products;
 
   return (
     <div className="flex flex-col min-h-screen relative">
       <CNotificationBar content="This is a notification" type="info" />
-      <CMainNavigationMenu />
+      {/* <CMainNavigationMenu /> */}
       <section className="bg-white py-5 border-box flex flex-col jsutify-center items-center px-3">
         <PageWidth>
           <div
@@ -77,13 +76,13 @@ export const SearchPage = () => {
             </div>
             <div className="col-span-12 md:col-span-9 flex flex-col gap-8">
               <section className="flex flex-col gap-4 px-3 lg:px-0">
-                {isLoading && <span>Loading...</span>}
+                {/* {isLoading && <span>Loading...</span>}
                 {products && !products.length && <span>No Products</span>}
                 {products &&
                   products.length > 0 &&
                   products?.map((product, key) => (
                     <GridItem product={product} key={key} />
-                  ))}
+                  ))} */}
               </section>
               <div className="flex w-full">
                 <PaginationDemo />
