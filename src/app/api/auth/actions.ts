@@ -1,6 +1,6 @@
 "use server"
 
-import { medusaClient } from "@/lib/client"
+import { medusaClient } from "@/lib/config"
 import { revalidatePath } from "next/cache"
 import { redirect } from 'next/navigation'
 import * as zod from "zod"
