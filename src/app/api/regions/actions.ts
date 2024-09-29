@@ -1,5 +1,5 @@
 "use server"
-import { medusaClient } from "@/lib/client"
+import { medusaClient } from "@/lib/config"
 
 export const getRegions = async () => {
 	try {

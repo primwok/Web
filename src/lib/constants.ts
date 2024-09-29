@@ -1,1 +1,0 @@
-export const MEDUSA_BACKEND_URL = process.env.NEXT_PUBLIC_PRIMWOK_API_URL
