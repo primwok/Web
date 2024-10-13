@@ -21,7 +21,7 @@ export async function generateStaticParams() {
   );
 
   if (!countryCodes) {
-    return null;
+    return [];
   }
 
   const products = await Promise.all(

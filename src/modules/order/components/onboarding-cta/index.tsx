@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { Button, Container, Text } from "@medusajs/ui"
-import { resetOnboardingState } from "app/actions"
+import { Button, Container, Text } from "@medusajs/ui";
+import { resetOnboardingState } from "@/app/actions";
 
 const OnboardingCta = ({ orderId }: { orderId: string }) => {
   return (
@@ -22,7 +22,7 @@ const OnboardingCta = ({ orderId }: { orderId: string }) => {
         </Button>
       </div>
     </Container>
-  )
-}
+  );
+};
 
-export default OnboardingCta
+export default OnboardingCta;

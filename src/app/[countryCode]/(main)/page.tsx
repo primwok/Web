@@ -10,8 +10,8 @@ import { CFooter } from "@/modules/common/components/footer";
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
-      <CNotificationBar content="This is a notification" type="info" />
-      <CMainNavigationMenu />
+      {/* <CNotificationBar content="This is a notification" type="info" />
+      <CMainNavigationMenu /> */}
       <SimpleCarousel />
       <ImageTextBlock
         title="The Primwok collection"
@@ -214,7 +214,7 @@ export default function Home() {
           ]}
         />
       </div>
-      <CFooter />
+      {/* <CFooter /> */}
     </div>
   );
 }
