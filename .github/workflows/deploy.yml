@@ -52,13 +52,8 @@ jobs:
           fi
 
           # Set the appropriate service name based on the repository
-          if [[ ${{ github.event.repository.name }} == "medusa-backend" ]]; then
-            SERVICE_NAME=medusa-$ENVIRONMENT
-          elif [[ ${{ github.event.repository.name }} == "store-front" ]]; then
-            SERVICE_NAME=storefront-$ENVIRONMENT
-          elif [[ ${{ github.event.repository.name }} == "payload-cms" ]]; then
-            SERVICE_NAME=payload-$ENVIRONMENT
-          fi
+          SERVICE_NAME=storefront-$ENVIRONMENT
+
 
           ssh -o StrictHostKeyChecking=no ${{ secrets.DO_USER }}@${{ secrets.DO_SERVER_IP }} <<EOF
             set -e  # Abort on error
@@ -75,7 +70,8 @@ jobs:
 
             # Stop and remove the existing container if it exists
             echo "Stopping and removing existing container"
-            rm .env
+            # remove .env if it exists
+            rm -f /var/www/primwok/$ENVIRONMENT/$SERVICE_NAME/.env
             docker compose down || { echo "Docker Compose down failed"; exit 1; }
 
             # Log in to GitHub Container Registry
