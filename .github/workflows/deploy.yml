@@ -72,6 +72,7 @@ jobs:
             echo "Stopping and removing existing container"
             # remove .env if it exists
             rm -f /var/www/primwok/$ENVIRONMENT/$SERVICE_NAME/.env
+            cd /var/www/primwok/$ENVIRONMENT/$SERVICE_NAME
             docker compose down || { echo "Docker Compose down failed"; exit 1; }
 
             # Log in to GitHub Container Registry
@@ -87,8 +88,8 @@ jobs:
             echo "NEXT_PUBLIC_PRIMWOK_API_URL=http://medusa-$ENVIRONMENT:9000" >> .env
             echo "NODE_ENV=$ENVIRONMENT" >> .env
             echo "NEXT_PUBLIC_BUILD_ID=${{ github.run_id }}" >> .env
-
-
+            
+            
             # Pull the latest image from GHCR and recreate the container
             echo "Pulling the latest $SERVICE_NAME image from GHCR and recreating the container"
             docker-compose up -d --build --force-recreate $SERVICE_NAME || { echo "Docker Compose failed"; exit 1; }
