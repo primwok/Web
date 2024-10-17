@@ -1,1 +1,1 @@
-export const API_URL = process.env.REACT_APP_MEDUSA_API_URL
+export const API_URL = process.env.NEXT_PUBLIC_PRIMWOK_API_URL

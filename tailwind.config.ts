@@ -7,9 +7,30 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-	],
+  ],
   prefix: "",
   theme: {
+    fontFamily: {
+      sans: ["Poppins", "sans-serif"],
+    },
+    fontSize: {
+      "xs": ["0.64rem", {}],
+      "sm": ["0.8rem", {}],
+      "base": ["1rem", {}],
+      "lg": ["1.25rem", {}],
+      "xl": ["1.563rem", {}],
+      "2xl": ["1.953rem", {}],
+      "3xl": ["2.441rem", {}],
+      "4xl": ["3.052rem", {}],
+      "5xl": ["3.815rem", {}],
+      "6xl": ["4.768rem", {}],
+      "7xl": ["5.96rem", {}],
+      "8xl": ["7.451rem", {}],
+      "9xl": ["9.313rem", {}],
+    },
+    // lineHeight: {
+    //   "leading-normal": "1.85",
+    // },
     container: {
       center: true,
       padding: "2rem",

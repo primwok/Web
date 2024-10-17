@@ -18,7 +18,7 @@ interface CInputProps {
   name: string;
   id?: string;
   label?: string;
-  required: boolean;
+  required?: boolean;
 }
 
 export const CInput: React.FC<React.PropsWithoutRef<CInputProps>> = (props) => {

@@ -1,0 +1,59 @@
+services:
+  # Next.js Storefront
+  storefront-dev:
+    container_name: storefront-dev
+    image: ghcr.io/primwok/store-front:dev
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=dev
+      - NEXT_PUBLIC_PRIMWOK_API_URL=http://medusa-dev:9000
+    command: >
+      sh -c "npm run start"
+    ports:
+      - "8000:3000"
+    networks:
+      - dev-network
+
+  storefront-qa:
+    container_name: storefront-qa
+    image: ghcr.io/primwok/store-front:qa
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=qa
+      - NEXT_PUBLIC_PRIMWOK_API_URL=http://medusa-qa:9000
+    command: >
+      sh -c "npm run start"
+    ports:
+      - "8001:3000"
+    networks:
+      - qa-network
+
+  storefront-prod:
+    container_name: storefront-prod
+    image: ghcr.io/primwok/store-front:prod
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=prod
+      - NEXT_PUBLIC_PRIMWOK_API_URL=http://medusa-prod:9000
+    command: >
+      sh -c "npm run start"
+    ports:
+      - "8002:3000"
+    networks:
+      - prod-network
+
+networks:
+  dev-network:
+    name: dev-network
+  qa-network:
+    name: qa-network
+  prod-network:
+    name: prod-network
+
+  

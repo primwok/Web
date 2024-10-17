@@ -1,0 +1,101 @@
+name: Deploy Store Front
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+      - qa
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install SSH key
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.DO_SSH_PRIVATE_KEY }}
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v1
+
+      # Log in to GitHub Container Registry
+      - name: Log in to GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      # Build Docker image
+      - name: Build Docker image
+        run: |
+          docker build -t ghcr.io/${{ github.repository }}:${{ github.ref_name }} .
+
+      # Push Docker image to GHCR
+      - name: Push Docker image
+        run: |
+          docker push ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+
+      - name: Deploy to environment
+        run: |
+          set -e  # Abort on error
+
+          if [[ ${{ github.ref }} == "refs/heads/master" ]]; then
+              ENVIRONMENT=prod 
+              BRANCH=master
+          elif [[ ${{ github.ref }} == "refs/heads/dev" ]]; then
+              ENVIRONMENT=dev
+              BRANCH=dev
+          elif [[ ${{ github.ref }} == "refs/heads/qa" ]]; then
+              ENVIRONMENT=qa
+              BRANCH=qa
+          fi
+
+          # Set the appropriate service name based on the repository
+          SERVICE_NAME=storefront-$ENVIRONMENT
+
+
+          ssh -o StrictHostKeyChecking=no ${{ secrets.DO_USER }}@${{ secrets.DO_SERVER_IP }} <<EOF
+            set -e  # Abort on error
+
+            cd /var/www/primwok/$ENVIRONMENT
+
+            # Clone specific branch if directory doesn't exist
+            if [ ! -d "$SERVICE_NAME" ]; then
+                git clone -b $BRANCH git@github.com:${{ github.repository }} $SERVICE_NAME || { echo "Failed to clone repository"; exit 1; }
+            else
+                cd $SERVICE_NAME
+                git pull origin $BRANCH || { echo "Failed to pull latest code"; exit 1; }
+            fi
+
+            # Stop and remove the existing container if it exists
+            echo "Stopping and removing existing container"
+            # remove .env if it exists
+            rm -f /var/www/primwok/$ENVIRONMENT/$SERVICE_NAME/.env
+            cd /var/www/primwok/$ENVIRONMENT/$SERVICE_NAME
+            docker compose down || { echo "Docker Compose down failed"; exit 1; }
+
+            # Log in to GitHub Container Registry
+            echo "Logging in to GHCR"
+            echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin || { echo "Failed to log in to GHCR"; exit 1; }
+
+            cd /var/www/primwok/$ENVIRONMENT/$SERVICE_NAME
+
+            # Create .env file for Docker Compose
+            echo "Creating .env file"
+            echo "DO_USER=${{ secrets.DO_USER }}" >> .env
+            echo "DO_SERVER_IP=${{ secrets.DO_SERVER_IP }}" >> .env
+            echo "NEXT_PUBLIC_PRIMWOK_API_URL=http://medusa-$ENVIRONMENT:9000" >> .env
+            echo "NODE_ENV=$ENVIRONMENT" >> .env
+            echo "NEXT_PUBLIC_BUILD_ID=${{ github.run_id }}" >> .env
+            
+            
+            # Pull the latest image from GHCR and recreate the container
+            echo "Pulling the latest $SERVICE_NAME image from GHCR and recreating the container"
+            docker-compose up -d --build --force-recreate $SERVICE_NAME || { echo "Docker Compose failed"; exit 1; }
+          EOF
+    env:
+      DO_USER: ${{ secrets.DO_USER }}
+      DO_SERVER_IP: ${{ secrets.DO_SERVER_IP }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      DO_SSH_PRIVATE_KEY: ${{ secrets.DO_SSH_PRIVATE_KEY }}
