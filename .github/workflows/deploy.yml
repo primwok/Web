@@ -84,6 +84,9 @@ jobs:
             echo "Creating .env file"
             echo "DO_USER=${{ secrets.DO_USER }}" >> .env
             echo "DO_SERVER_IP=${{ secrets.DO_SERVER_IP }}" >> .env
+            echo "NEXT_PUBLIC_PRIMWOK_API_URL=http://medusa-$ENVIRONMENT:9000" >> .env
+            echo "NODE_ENV=$ENVIRONMENT" >> .env
+            echo "NEXT_PUBLIC_BUILD_ID=${{ github.run_id }}" >> .env
 
 
             # Pull the latest image from GHCR and recreate the container
