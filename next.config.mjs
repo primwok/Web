@@ -10,7 +10,7 @@ const nextConfig = {
   },
   generateBuildId: async () => {
     // You can, for example, get the latest git commit hash here
-    return process.env.NEXT_PUBLIC_BUILD_ID;
+    return process.env.NEXT_PUBLIC_BUILD_ID || "default-build-id";
   },
 };
 
