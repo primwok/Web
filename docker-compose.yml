@@ -9,6 +9,7 @@ services:
     environment:
       - NODE_ENV=development
       - NEXT_PUBLIC_PRIMWOK_API_URL=http://medusa-dev:9000
+      - NEXT_PUBLIC_BUILD_ID=dev
     command: >
       sh -c "npm run start"
     ports:
@@ -25,6 +26,7 @@ services:
     environment:
       - NODE_ENV=qa
       - NEXT_PUBLIC_PRIMWOK_API_URL=http://medusa-qa:9000
+      - NEXT_PUBLIC_BUILD_ID=qa
     command: >
       sh -c "npm run start"
     ports:
@@ -41,6 +43,7 @@ services:
     environment:
       - NODE_ENV=production
       - NEXT_PUBLIC_PRIMWOK_API_URL=http://medusa-prod:9000
+      - NEXT_PUBLIC_BUILD_ID=prod
     command: >
       sh -c "npm run start"
     ports:
