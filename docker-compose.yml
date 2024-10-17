@@ -34,7 +34,7 @@ services:
 
   storefront-prod:
     container_name: storefront-prod
-    image: ghcr.io/primwok/store-front:prod
+    image: ghcr.io/primwok/store-front:main
     # build:
     #   context: .
     #   dockerfile: Dockerfile
