@@ -42,7 +42,7 @@ jobs:
 
           if [[ ${{ github.ref }} == "refs/heads/master" ]]; then
               ENVIRONMENT=prod 
-              BRANCH=master
+              BRANCH=main
           elif [[ ${{ github.ref }} == "refs/heads/dev" ]]; then
               ENVIRONMENT=dev
               BRANCH=dev
