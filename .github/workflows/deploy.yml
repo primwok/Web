@@ -82,18 +82,8 @@ jobs:
 
             # Create .env file for Docker Compose
             echo "Creating .env file"
-            echo "DB_USER_DEV=${{ secrets.DB_USER_DEV }}" > .env
-            echo "DB_PASSWORD_DEV=${{ secrets.DB_PASSWORD_DEV }}" >> .env
-            echo "DB_NAME_DEV=${{ secrets.DB_NAME_DEV }}" >> .env
-            echo "DB_USER_QA=${{ secrets.DB_USER_QA }}" >> .env
-            echo "DB_PASSWORD_QA=${{ secrets.DB_PASSWORD_QA }}" >> .env
-            echo "DB_NAME_QA=${{ secrets.DB_NAME_QA }}" >> .env
-            echo "DB_USER_PROD=${{ secrets.DB_USER_PROD }}" >> .env
-            echo "DB_PASSWORD_PROD=${{ secrets.DB_PASSWORD_PROD }}" >> .env
-            echo "DB_NAME_PROD=${{ secrets.DB_NAME_PROD }}" >> .env
             echo "DO_USER=${{ secrets.DO_USER }}" >> .env
             echo "DO_SERVER_IP=${{ secrets.DO_SERVER_IP }}" >> .env
-            echo "MEILISEARCH_API_KEY=${{ secrets.MEILISEARCH_API_KEY }}" >> .env
 
 
             # Pull the latest image from GHCR and recreate the container
@@ -101,24 +91,7 @@ jobs:
             docker-compose up -d --build --force-recreate $SERVICE_NAME || { echo "Docker Compose failed"; exit 1; }
           EOF
     env:
-      DB_USER_DEV: ${{ secrets.DB_USER_DEV }}
-      DB_PASSWORD_DEV: ${{ secrets.DB_PASSWORD_DEV }}
-      DB_NAME_DEV: ${{ secrets.DB_NAME_DEV }}
-      DB_USER_QA: ${{ secrets.DB_USER_QA }}
-      DB_PASSWORD_QA: ${{ secrets.DB_PASSWORD_QA }}
-      DB_NAME_QA: ${{ secrets.DB_NAME_QA }}
-      DB_USER_PROD: ${{ secrets.DB_USER_PROD }}
-      DB_PASSWORD_PROD: ${{ secrets.DB_PASSWORD_PROD }}
-      DB_NAME_PROD: ${{ secrets.DB_NAME_PROD }}
-      # DB_USER_DEV_CMS: ${{ secrets.DB_USER_DEV_CMS }} # Add these
-      # DB_PASSWORD_DEV_CMS: ${{ secrets.DB_PASSWORD_DEV_CMS }} # Add these
-      # DB_NAME_DEV_CMS: ${{ secrets.DB_NAME_DEV_CMS }} # Add these
-      # DB_USER_QA_CMS: ${{ secrets.DB_USER_QA_CMS }} # Add these
-      # DB_PASSWORD_QA_CMS: ${{ secrets.DB_PASSWORD_QA_CMS }} # Add these
-      # DB_NAME_QA_CMS: ${{ secrets.DB_NAME_QA_CMS }} # Add these
-      # DB_USER_PROD_CMS: ${{ secrets.DB_USER_PROD_CMS }} # Add these
-      # DB_PASSWORD_PROD_CMS: ${{ secrets.DB_PASSWORD_PROD_CMS }} # Add these
-      # DB_NAME_PROD_CMS: ${{ secrets.DB_NAME_PROD_CMS }} # Add these
       DO_USER: ${{ secrets.DO_USER }}
       DO_SERVER_IP: ${{ secrets.DO_SERVER_IP }}
-      MEILISEARCH_API_KEY: ${{ secrets.MEILISEARCH_API_KEY }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      DO_SSH_PRIVATE_KEY: ${{ secrets.DO_SSH_PRIVATE_KEY }}
