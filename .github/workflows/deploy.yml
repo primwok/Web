@@ -84,7 +84,17 @@ jobs:
             echo "Logging in to GHCR"
             echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin || { echo "Failed to log in to GHCR"; exit 1; }
 
-            cd /var/www/primwok/$ENVIRONMENT/$SERVICE_NAME            
+            cd /var/www/primwok/$ENVIRONMENT/$SERVICE_NAME    
+            
+            # Create .env file for Docker Compose
+            echo "Creating .env file"
+            cat > .env <<EOF
+            NODE_ENV=$ENVIRONMENT
+            NEXT_PUBLIC_BASE_URL=https://$ENVIRONMENT.primwox.com/api
+            NEXT_PUBLIC_DEFAULT_REGION=ke
+            NEXT_PUBLIC_SEARCH_ENDPOINT=https://$ENVIRONMENT.primwox.com/search-api
+            EOF
+            
             
             # Pull the latest image from GHCR and recreate the container
             echo "Pulling the latest $SERVICE_NAME image from GHCR and recreating the container"
