@@ -10,7 +10,7 @@ services:
       - NODE_ENV=dev
       - NEXT_PUBLIC_PRIMWOK_API_URL=http://medusa-dev:9000
       - NEXT_PUBLIC_DEFAULT_REGION=ke
-      - NEXT_PUBLIC_SEARCH_ENDPOINT=http://meilisearch-dev:7700
+      - NEXT_PUBLIC_SEARCH_ENDPOINT=https://dev.primwox.com/search-api
     command: >
       sh -c "npm run start"
     ports:
@@ -28,7 +28,7 @@ services:
       - NODE_ENV=qa
       - NEXT_PUBLIC_PRIMWOK_API_URL=http://medusa-qa:9000
       - NEXT_PUBLIC_DEFAULT_REGION=ke
-      - NEXT_PUBLIC_SEARCH_ENDPOINT=http://meilisearch-qa:7700
+      - NEXT_PUBLIC_SEARCH_ENDPOINT=https://dev.primwox.com/search-api
     command: >
       sh -c "npm run start"
     ports:
@@ -46,7 +46,7 @@ services:
       - NODE_ENV=prod
       - NEXT_PUBLIC_PRIMWOK_API_URL=http://medusa-prod:9000
       - NEXT_PUBLIC_DEFAULT_REGION=ke
-      - NEXT_PUBLIC_SEARCH_ENDPOINT=http://meilisearch-prod:7700
+      - NEXT_PUBLIC_SEARCH_ENDPOINT=https://dev.primwox.com/search-api
     command: >
       sh -c "npm run start"
     ports:
