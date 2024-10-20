@@ -30,8 +30,10 @@ jobs:
       - name: Build Docker image
         run: |
           docker build \
-            --build-arg NEXT_PUBLIC_PRIMWOK_API_URL="https://${{ github.ref_name }}.primwox.com/api" \
+            --build-arg NEXT_PUBLIC_BASE_URL="https://${{ github.ref_name }}.primwox.com/api" \
             --build-arg NODE_ENV="${{ github.ref_name }}" \
+            --build-arg NEXT_PUBLIC_DEFAULT_REGION=ke \
+            --build-arg NEXT_SEARCH_ENDPOINT="https://${{ github.ref_name }}.primwox.com/search-api" \
             -t ghcr.io/${{ github.repository }}:${{ github.ref_name }} .
 
       # Push Docker image to GHCR
@@ -82,16 +84,7 @@ jobs:
             echo "Logging in to GHCR"
             echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin || { echo "Failed to log in to GHCR"; exit 1; }
 
-            cd /var/www/primwok/$ENVIRONMENT/$SERVICE_NAME
-
-            # Create .env file for Docker Compose
-            echo "Creating .env file"
-            echo "DO_USER=${{ secrets.DO_USER }}" >> .env
-            echo "DO_SERVER_IP=${{ secrets.DO_SERVER_IP }}" >> .env
-            echo "NEXT_PUBLIC_PRIMWOK_API_URL=http://medusa-$ENVIRONMENT:9000" >> .env
-            echo "NODE_ENV=$ENVIRONMENT" >> .env
-            echo "NEXT_PUBLIC_BUILD_ID=${{ github.run_id }}" >> .env
-            
+            cd /var/www/primwok/$ENVIRONMENT/$SERVICE_NAME            
             
             # Pull the latest image from GHCR and recreate the container
             echo "Pulling the latest $SERVICE_NAME image from GHCR and recreating the container"
