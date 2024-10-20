@@ -94,7 +94,7 @@ jobs:
             
             # Pull the latest image from GHCR and recreate the container
             echo "Pulling the latest $SERVICE_NAME image from GHCR and recreating the container"
-            docker-compose up -d --force-recreate $SERVICE_NAME || { echo "Docker Compose failed"; exit 1; }
+            docker-compose up -d --pull $SERVICE_NAME || { echo "Docker Compose failed"; exit 1; }
           EOF
     env:
       DO_USER: ${{ secrets.DO_USER }}
