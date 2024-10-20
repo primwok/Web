@@ -6,6 +6,8 @@ import { MEDUSA_BACKEND_URL } from "./lib/constants";
 const BACKEND_URL = MEDUSA_BACKEND_URL;
 const DEFAULT_REGION = process.env.NEXT_PUBLIC_DEFAULT_REGION || "ke";
 
+console.log("BACKEND_URL", BACKEND_URL);
+
 const regionMapCache = {
 	regionMap: new Map<string, Region>(),
 	regionMapUpdated: Date.now(),

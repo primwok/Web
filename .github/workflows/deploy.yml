@@ -31,9 +31,7 @@ jobs:
         run: |
           docker build \
             --build-arg NEXT_PUBLIC_BASE_URL="https://${{ github.ref_name }}.primwox.com/api" \
-            --build-arg NODE_ENV=${{ github.ref_name }} \
             --build-arg NEXT_PUBLIC_DEFAULT_REGION=ke \
-            --build-arg NEXT_SEARCH_ENDPOINT="https://${{ github.ref_name }}.primwox.com/search-api" \
             -t ghcr.io/${{ github.repository }}:${{ github.ref_name }} .
 
       # Push Docker image to GHCR

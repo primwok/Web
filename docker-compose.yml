@@ -2,15 +2,15 @@ services:
   # Next.js Storefront
   storefront-dev:
     container_name: storefront-dev
-    image: ghcr.io/primwok/store-front:dev
-    # build:
-    #   context: .
-    #   dockerfile: Dockerfile
+    # image: ghcr.io/primwok/store-front:dev
+    build:
+      context: .
+      dockerfile: Dockerfile
     environment:
       - NODE_ENV=dev
-      - NEXT_PUBLIC_BASE_URL=http://medusa-dev:9000
-    #   - NEXT_PUBLIC_DEFAULT_REGION=ke
-      # - NEXT_PUBLIC_SEARCH_ENDPOINT=http://meilisearch-dev:7700
+      - NEXT_PUBLIC_BASE_URL=${NEXT_PUBLIC_BASE_URL}
+      - NEXT_PUBLIC_DEFAULT_REGION=${NEXT_PUBLIC_DEFAULT_REGION}
+      - NEXT_PUBLIC_SEARCH_ENDPOINT=${NEXT_PUBLIC_SEARCH_ENDPOINT}
     command: >
       sh -c "npm run start"
     ports:
@@ -26,9 +26,9 @@ services:
     #   dockerfile: Dockerfile
     environment:
       - NODE_ENV=qa
-      - NEXT_PUBLIC_BASE_URL=http://medusa-qa:9000
-      - NEXT_PUBLIC_DEFAULT_REGION=ke
-      # - NEXT_PUBLIC_SEARCH_ENDPOINT=http://meilisearch-qa:7700
+      - NEXT_PUBLIC_BASE_URL=${NEXT_PUBLIC_BASE_URL}
+      - NEXT_PUBLIC_DEFAULT_REGION=${NEXT_PUBLIC_DEFAULT_REGION}
+      - NEXT_PUBLIC_SEARCH_ENDPOINT=${NEXT_PUBLIC_SEARCH_ENDPOINT}
     command: >
       sh -c "npm run start"
     ports:
@@ -44,9 +44,9 @@ services:
     #   dockerfile: Dockerfile
     environment:
       - NODE_ENV=prod
-      - NEXT_PUBLIC_BASE_URL=http://medusa-prod:9000
-    #   - NEXT_PUBLIC_DEFAULT_REGION=ke
-      # - NEXT_PUBLIC_SEARCH_ENDPOINT=http://meilisearch-prod:7700
+      - NEXT_PUBLIC_BASE_URL=${NEXT_PUBLIC_BASE_URL}
+      - NEXT_PUBLIC_DEFAULT_REGION=${NEXT_PUBLIC_DEFAULT_REGION}
+      - NEXT_PUBLIC_SEARCH_ENDPOINT=${NEXT_PUBLIC_SEARCH_ENDPOINT}
     command: >
       sh -c "npm run start"
     ports:
