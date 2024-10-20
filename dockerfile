@@ -1,6 +1,12 @@
 # Use the official Node.js image as the base image
 FROM node:18-alpine AS builder
 
+# Set build arguments, used by github comtainer registry
+ARG NEXT_PUBLIC_PRIMWOK_API_URL
+
+# Set environment variables used by github comtainer registry
+ENV NEXT_PUBLIC_PRIMWOK_API_URL=${NEXT_PUBLIC_PRIMWOK_API_URL}
+
 # Set the working directory
 WORKDIR /app
 
