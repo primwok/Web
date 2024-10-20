@@ -16,7 +16,7 @@ export const Logo = () => {
 		${squadaOne.className}
 			`}
     >
-      Primwok
+      Primwox
     </Link>
   );
 };

@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { MEDUSA_BACKEND_URL } from "./lib/constants";
 
 const BACKEND_URL = MEDUSA_BACKEND_URL;
-const DEFAULT_REGION = process.env.NEXT_PUBLIC_DEFAULT_REGION || "us";
+const DEFAULT_REGION = process.env.NEXT_PUBLIC_DEFAULT_REGION || "ke";
 
 const regionMapCache = {
 	regionMap: new Map<string, Region>(),
