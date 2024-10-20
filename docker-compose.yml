@@ -27,7 +27,7 @@ services:
     environment:
       - NODE_ENV=qa
       - NEXT_PUBLIC_BASE_URL=http://medusa-qa:9000
-      # - NEXT_PUBLIC_DEFAULT_REGION=ke
+      - NEXT_PUBLIC_DEFAULT_REGION=ke
       # - NEXT_PUBLIC_SEARCH_ENDPOINT=http://meilisearch-qa:7700
     command: >
       sh -c "npm run start"
